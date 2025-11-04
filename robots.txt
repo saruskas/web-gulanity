@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gulanity.com/sitemap.xml
