@@ -9,6 +9,9 @@ module.exports = {
   	extend: {
   		colors: {
   			brand: {
+  				navy: '#052838',
+  				gold: '#F4BF00',
+  				beige: '#D4BFA6',
   				primary: '#2C3782',
   				'primary-hover': '#212A61',
   				'primary-active': '#181E49',
@@ -76,6 +79,11 @@ module.exports = {
   				'Helvetica Neue',
   				'Arial',
   				'sans-serif'
+  			],
+  			display: [
+  				'Cormorant',
+  				'Georgia',
+  				'serif'
   			],
   			headings: [
   				'Poppins',

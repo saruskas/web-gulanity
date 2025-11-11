@@ -4,6 +4,8 @@ import { Inter, Poppins } from "next/font/google";
 import Link from "next/link";
 import BackToTop from "./components/BackToTop";
 import ClientLayout from "./ClientLayout";
+import ConditionalFooter from "./components/ConditionalFooter";
+import { Toaster } from "sonner";
 
 
 
@@ -28,6 +30,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Gulanity" }],
   creator: "Gulanity",
   metadataBase: new URL("https://gulanity.com"),
+  icons: {
+    icon: "/favicon_blue.png",
+    shortcut: "/favicon_blue.png",
+    apple: "/favicon_blue.png",
+  },
   openGraph: {
     type: "website",
     locale: "es_ES",
@@ -217,8 +224,9 @@ export default function RootLayout({
             {children}
           </main>
         </ClientLayout>
-        <Footer />
+        <ConditionalFooter />
         <BackToTop />
+        <Toaster position="bottom-right" richColors />
       </body>
     </html>
   );
