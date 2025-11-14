@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 export const metadata: Metadata = {
   title: "Cómo elegir el plato perfecto según tu dieta | Gulanity Blog",
@@ -22,52 +24,38 @@ export const metadata: Metadata = {
 
 export default function BlogPost() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Breadcrumb */}
-      <nav className="bg-gray-50 py-4 pt-[76px]">
-        <div className="max-w-4xl mx-auto px-6">
-          <ol className="flex items-center space-x-2 text-sm text-gray-600">
-            <li><Link href="/" className="hover:text-[#FCDB7D]">Inicio</Link></li>
-            <li><span className="mx-2">/</span></li>
-            <li><Link href="/blog" className="hover:text-[#FCDB7D]">Blog</Link></li>
-            <li><span className="mx-2">/</span></li>
-            <li className="text-gray-900">Cómo elegir el plato perfecto según tu dieta</li>
-          </ol>
-        </div>
-      </nav>
-
-      {/* Article Header */}
-      <header className="py-12">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center">
-            <span className="inline-block px-3 py-1 text-sm font-semibold text-[#052838] bg-[#FCDB7D] rounded-full mb-4">
-              Guías
-            </span>
-            <h1 className="text-4xl md:text-5xl font-bold text-[#052838] mb-6">
-              Cómo elegir el plato perfecto según tu dieta
-            </h1>
-            <div className="flex items-center justify-center space-x-6 text-gray-600">
+    <div className="min-h-screen bg-white text-[#052838]">
+      <Header />
+      <main>
+        <nav className="bg-white border-b border-gray-100">
+          <div className="container-outer py-4 text-sm text-[#052838]/70 flex flex-wrap items-center gap-1">
+            <Link href="/" className="hover:text-[#052838]">Inicio</Link>
+            <span>/</span>
+            <Link href="/blog" className="hover:text-[#052838]">Blog</Link>
+            <span>/</span>
+            <span className="text-[#052838]">Cómo elegir el plato perfecto según tu dieta</span>
+          </div>
+        </nav>
+        <section className="section-gap bg-white">
+          <div className="container-outer max-w-4xl text-center space-y-4">
+            <span className="inline-flex items-center justify-center px-4 py-1 rounded-full bg-[#D4BFA6]/20 text-xs font-semibold uppercase tracking-[0.2em] text-[#052838]">Guías</span>
+            <h1 className="text-4xl md:text-5xl font-display text-[#052838]">Cómo elegir el plato perfecto según tu dieta</h1>
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-[#052838]/70">
               <time dateTime="2025-08-05">5 de agosto, 2025</time>
               <span>•</span>
               <span>5 min de lectura</span>
               <span>•</span>
-              <span>Por Equipo Gulanity</span>
+              <span>Equipo Gulanity</span>
             </div>
           </div>
-        </div>
-      </header>
-
-      {/* Article Content */}
-      <article className="pb-16">
-        <div className="max-w-4xl mx-auto px-6">
-          {/* Featured Image Placeholder */}
-          <div className="aspect-video bg-gradient-to-br from-[#FCDB7D] to-yellow-300 rounded-xl mb-8 flex items-center justify-center">
-            <div className="text-[#052838] font-semibold text-xl text-center px-6">
-              Imagen: Platos variados representando diferentes tipos de dietas
-            </div>
-          </div>
-
-          <div className="prose prose-lg max-w-none">
+        </section>
+        <section className="section-gap bg-gray-50">
+          <div className="container-outer">
+            <article className="max-w-4xl mx-auto bg-white rounded-3xl border border-gray-100 p-8 shadow-sm">
+              <div className="aspect-video rounded-2xl bg-gradient-to-br from-[#F5E6D2] via-[#FBEFD9] to-[#F9E5C8] mb-8 flex items-center justify-center">
+                <p className="text-[#052838] font-semibold text-center px-6">Imagen conceptual de platos variados que representan diferentes tipos de dietas</p>
+              </div>
+              <div className="prose prose-lg max-w-none text-[#052838]/80">
             <p className="text-xl text-gray-700 mb-8 leading-relaxed">
               En la era de la personalización alimentaria, elegir el plato adecuado según tus necesidades dietéticas 
               se ha convertido en una habilidad esencial. Ya sea que sigas una dieta específica por salud, 
@@ -137,42 +125,25 @@ export default function BlogPost() {
               restaurantes que valoran la diversidad dietética de sus clientes.
             </p>
           </div>
-
-          {/* Author Bio */}
-          <div className="border-t border-gray-200 pt-8 mt-12">
-            <div className="flex items-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#FCDB7D] to-yellow-300 rounded-full flex items-center justify-center mr-4">
-                <span className="text-[#052838] font-bold text-lg">G</span>
+              <div className="border-t border-gray-100 pt-8 mt-12 flex items-center gap-4">
+                <div className="w-16 h-16 rounded-full bg-[#D4BFA6]/40 flex items-center justify-center font-display text-xl text-[#052838]">G</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-[#052838]">Equipo Gulanity</h3>
+                  <p className="text-sm text-[#052838]/70">Expertos en gastronomía y tecnología alimentaria, comprometidos con conectar foodies y restaurantes de manera inteligente.</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-[#052838]">Equipo Gulanity</h3>
-                <p className="text-gray-600">
-                  Expertos en gastronomía y tecnología alimentaria, comprometidos con conectar 
-                  foodies y restaurantes de manera inteligente.
-                </p>
+              <div className="bg-gray-50 rounded-2xl p-8 mt-10 text-center">
+                <h3 className="text-2xl font-bold mb-4 text-[#052838]">¿Te gustó este artículo?</h3>
+                <p className="text-[#052838]/70 mb-6">Descubre más consejos y guías en nuestro blog.</p>
+                <Link href="/blog" className="inline-flex items-center justify-center rounded-full bg-[#D4BFA6] px-8 py-3 font-semibold text-[#052838] hover:opacity-90 transition-opacity">
+                  Ver más artículos
+                </Link>
               </div>
-            </div>
+            </article>
           </div>
-
-          {/* Related Posts CTA */}
-          <div className="bg-gray-50 rounded-xl p-8 mt-12">
-            <h3 className="text-2xl font-bold text-[#052838] mb-4 text-center">
-              ¿Te gustó este artículo?
-            </h3>
-            <p className="text-gray-600 text-center mb-6">
-              Descubre más consejos y guías en nuestro blog
-            </p>
-            <div className="text-center">
-              <Link
-                href="/blog"
-                className="inline-block px-8 py-3 bg-gradient-to-r from-[#FCDB7D] to-yellow-300 text-[#052838] font-semibold rounded-full hover:opacity-90 transition-opacity"
-              >
-                Ver más artículos
-              </Link>
-            </div>
-          </div>
-        </div>
-      </article>
+        </section>
+      </main>
+      <Footer />
     </div>
   );
 }

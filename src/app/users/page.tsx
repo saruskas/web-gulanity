@@ -14,14 +14,41 @@ export default function UsersPage() {
         <div className="container-outer w-full py-10 md:py-12">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <h1 className="text-white">Elegir bien, siempre.</h1>
-              <p className="mt-4 text-white/85 max-w-xl">
+              {/* Toggle en el hero */}
+              <div className="mb-5">
+                <div className="inline-flex rounded-full p-1 bg-white/5 border border-white/10">
+                  <a
+                    href="/restaurants"
+                    className="px-4 py-1.5 text-white/85 hover:text-white rounded-full text-xs font-semibold transition-all"
+                    aria-pressed="false"
+                  >
+                    Soy Restaurante
+                  </a>
+                  <a
+                    href="/users"
+                    className="px-4 py-1.5 bg-[#F4BF00] text-[#052838] rounded-full text-xs font-semibold transition-all"
+                    aria-pressed="true"
+                  >
+                    Soy Usuario
+                  </a>
+                </div>
+              </div>
+
+              <h1 className="text-white font-display mb-4">
+                Elegir bien, siempre.
+              </h1>
+
+              <p className="text-white/70 max-w-xl mb-7 leading-relaxed">
                 Encuentra platos y restaurantes que encajan contigo gracias a recomendaciones reales.
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a href="#lista-espera" className="btn btn-md btn-yellow">Únete a la lista de espera</a>
-                <a href="#que-ganas" className="btn btn-md btn-outline">Saber más</a>
+              <div className="flex flex-wrap items-center gap-3">
+                <a href="#lista-espera" className="btn btn-md btn-yellow">
+                  Únete a la lista de espera
+                </a>
+                <a href="#que-ganas" className="btn btn-md btn-outline">
+                  Saber más
+                </a>
               </div>
             </div>
 

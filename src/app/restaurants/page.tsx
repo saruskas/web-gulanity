@@ -2,7 +2,8 @@
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { CheckCircle2, TrendingUp, Users, BarChart3, Zap } from "lucide-react";
+import HeroRestaurantsShowcase from "../components/HeroRestaurantsShowcase";
+import { CheckCircle2, TrendingUp, Users, BarChart3, Zap, Sparkles, Target, Megaphone } from "lucide-react";
 
 export default function RestaurantsPage() {
   return (
@@ -13,28 +14,57 @@ export default function RestaurantsPage() {
       <section id="hero" className="hero-full flex items-center">
         <div className="container-outer w-full py-10 md:py-12">
           <div className="grid md:grid-cols-2 gap-10 items-center">
-            {/* Texto */}
-            <div>
-              <h1 className="text-white">Elegir bien, siempre.</h1>
-              <p className="mt-4 text-white/85 max-w-xl">
-                Gulanity conecta restaurantes y foodies para que lo que esperas sea exactamente lo que encuentras.
-              </p>
+            {/* Columna izquierda: diseño centrado internamente */}
+            <div className="justify-self-start">
+              <div className="max-w-xl mx-0 md:mx-0 flex flex-col items-center text-center">
+                {/* Toggle centrado */}
+                <div className="mb-6">
+                  <div className="inline-flex rounded-full p-1 bg-white/5 border border-white/10">
+                    <a
+                      href="/restaurants"
+                      className="px-5 py-2 bg-[#D4BFA6] text-[#052838] rounded-full text-xs font-semibold transition-all"
+                      aria-pressed="true"
+                    >
+                      Soy Restaurante
+                    </a>
+                    <a
+                      href="/users"
+                      className="px-5 py-2 text-white/85 hover:text-white rounded-full text-xs font-semibold transition-all"
+                      aria-pressed="false"
+                    >
+                      Soy Usuario
+                    </a>
+                  </div>
+                </div>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a href="#lista-espera" className="btn btn-md btn-outline">Reservar una demo</a>
-                <a href="mailto:hola@gulanity.com" className="btn btn-md btn-gold">Contactar por email</a>
+                {/* Title centrado (usa el scale global de h1) */}
+                <h1 className="text-white font-display mb-4">
+                  Elegir bien, siempre.
+                  {/* Si lo quisieras “un punto” más grande, añade: md:text-6xl */}
+                </h1>
+
+                {/* Subtitle centrado */}
+                <p className="text-white/70 leading-relaxed mb-8">
+                  Gulanity conecta restaurantes y foodies para que lo que esperas sea
+                  exactamente lo que encuentras.
+                </p>
+
+                {/* Botones centrados */}
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <a href="#lista-espera" className="btn btn-md btn-gold">
+                    Únete a la lista de espera
+                  </a>
+                  <a href="mailto:hola@gulanity.com" className="btn btn-md btn-outline">
+                    Reserva una demo
+                  </a>
+                </div>
               </div>
             </div>
 
-            {/* Imagen */}
-            <figure className="relative w-full max-w-md md:max-w-none mx-auto">
-              <img
-                src="/hero-restaurants.png"
-                alt="Gulanity para restaurantes"
-                className="w-full h-auto object-contain"
-                loading="eager"
-              />
-            </figure>
+            {/* Columna derecha: Platform Mockup */}
+            <div className="relative w-full max-w-md md:max-w-none mx-auto">
+              <HeroRestaurantsShowcase />
+            </div>
           </div>
         </div>
       </section>
@@ -87,7 +117,7 @@ export default function RestaurantsPage() {
       </section>
 
       {/* El impacto en tu bolsillo */}
-      <section id="impacto" className="section-gap bg-white">
+      <section id="impacto" className="section-gap bg-gray-50">
         <div className="container-outer max-w-4xl">
           <h2 className="text-[#052838] text-center mb-10 md:mb-12">
             El impacto en tu bolsillo
@@ -117,7 +147,7 @@ export default function RestaurantsPage() {
       </section>
 
       {/* Cómo funciona */}
-      <section id="como-funciona" className="section-gap bg-gray-50">
+      <section id="como-funciona" className="section-gap bg-white">
         <div className="container-outer">
           <h2 className="text-[#052838] text-center mb-10 md:mb-12">
             Cómo funciona
@@ -133,9 +163,7 @@ export default function RestaurantsPage() {
                 <div className="bg-[#D4BFA6] text-[#052838] w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-lg mb-4">
                   {step.num}
                 </div>
-                <h3 className="text-[#052838] mb-2">
-                  {step.title}
-                </h3>
+                <h3 className="text-[#052838] mb-2">{step.title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p>
               </div>
             ))}
@@ -144,7 +172,7 @@ export default function RestaurantsPage() {
       </section>
 
       {/* Testimonios */}
-      <section className="section-gap bg-white">
+      <section className="section-gap bg-gray-50">
         <div className="container-outer max-w-3xl">
           <div className="bg-gray-50 border border-gray-200 rounded-3xl p-6 md:p-10">
             <p className="text-xl md:text-2xl font-display text-[#052838] mb-5 leading-relaxed">
@@ -159,11 +187,9 @@ export default function RestaurantsPage() {
       </section>
 
       {/* Lista de espera */}
-      <section id="lista-espera" className="section-gap bg-gray-50">
+      <section id="lista-espera" className="section-gap bg-white">
         <div className="container-outer max-w-3xl text-center">
-          <h2 className="text-[#052838] mb-3">
-            Únete a la lista de espera
-          </h2>
+          <h2 className="text-[#052838] mb-3">Únete a la lista de espera</h2>
           <p className="text-base text-gray-600 mb-10">
             Forma parte del futuro de la gastronomía.
           </p>
@@ -172,10 +198,7 @@ export default function RestaurantsPage() {
             <p className="text-gray-600 mb-6 text-sm">
               Formulario de registro próximamente disponible.
             </p>
-            <a
-              href="mailto:hola@gulanity.com"
-              className="btn btn-md btn-gold inline-flex"
-            >
+            <a href="mailto:hola@gulanity.com" className="btn btn-md btn-gold inline-flex">
               Contactar por email
             </a>
           </div>

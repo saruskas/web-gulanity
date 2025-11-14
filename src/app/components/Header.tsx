@@ -16,12 +16,13 @@ export default function Header() {
   const isUsers = pathname === "/users";
 
   const navLinks = [
-    { label: "Inicio", href: "#hero" },
-    { label: "Qué ganas", href: "#que-ganas" },
-    { label: "Beneficios", href: "#beneficios" },
-    { label: "Impacto", href: "#impacto" },
-    { label: "Cómo funciona", href: "#como-funciona" },
-    { label: "Lista de espera", href: "#lista-espera" },
+    { label: "Inicio", href: "#hero", mode: "anchor" as const },
+    { label: "Qué ganas", href: "#que-ganas", mode: "anchor" as const },
+    { label: "Beneficios", href: "#beneficios", mode: "anchor" as const },
+    { label: "Impacto", href: "#impacto", mode: "anchor" as const },
+    { label: "Cómo funciona", href: "#como-funciona", mode: "anchor" as const },
+    { label: "Lista de espera", href: "#lista-espera", mode: "anchor" as const },
+    { label: "Blog", href: "/blog", mode: "route" as const },
   ];
 
   // Cerrar con clic/touch fuera y con Escape. Además, bloquear scroll cuando el menú está abierto.
@@ -128,17 +129,28 @@ export default function Header() {
                   <ul>
                     {navLinks.map((link) => (
                       <li key={link.href}>
-                        <a
-                          href={link.href}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleMenuClick(link.href);
-                          }}
-                          className="block px-4 py-2.5 text-[13px] text-white/85 hover:text-white hover:bg-white/5 transition-colors"
-                          role="menuitem"
-                        >
-                          {link.label}
-                        </a>
+                        {link.mode === "anchor" ? (
+                          <a
+                            href={link.href}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleMenuClick(link.href);
+                            }}
+                            className="block px-4 py-2.5 text-[13px] text-white/85 hover:text-white hover:bg-white/5 transition-colors"
+                            role="menuitem"
+                          >
+                            {link.label}
+                          </a>
+                        ) : (
+                          <Link
+                            href={link.href}
+                            onClick={() => setMenuOpen(false)}
+                            className="block px-4 py-2.5 text-[13px] text-white/85 hover:text-white hover:bg-white/5 transition-colors"
+                            role="menuitem"
+                          >
+                            {link.label}
+                          </Link>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -146,33 +158,43 @@ export default function Header() {
               </div>
             )}
 
-            {/* Toggle (ligeramente más pequeño) */}
-            <nav aria-label="Selector de vista" className="shrink-0">
-              <div className="inline-flex rounded-full p-0.5 bg-white/5 border border-white/10">
-                <Link
-                  href="/restaurants"
-                  className={`px-3.5 py-1.5 rounded-full text-[11.5px] font-semibold transition-all ${
-                    isRestaurants
-                      ? "bg-[#D4BFA6] text-[#052838]"
-                      : "text-white/85 hover:text-white"
-                  }`}
-                  aria-pressed={isRestaurants}
-                >
-                  Restaurantes
-                </Link>
-                <Link
-                  href="/users"
-                  className={`px-3.5 py-1.5 rounded-full text-[11.5px] font-semibold transition-all ${
-                    isUsers
-                      ? "bg-[#F4BF00] text-[#052838]"
-                      : "text-white/85 hover:text-white"
-                  }`}
-                  aria-pressed={isUsers}
-                >
-                  Usuarios
-                </Link>
-              </div>
-            </nav>
+            {/* Link directo al blog */}
+            <Link
+              href="/blog"
+              className="hidden sm:inline-flex items-center rounded-full border border-white/15 px-3.5 py-1.5 text-xs font-semibold text-white/85 hover:bg-white/10 hover:text-white transition-all"
+            >
+              Blog
+            </Link>
+
+            {/* Toggle - solo visible al hacer scroll */}
+            {scrolled && (
+              <nav aria-label="Selector de vista" className="shrink-0">
+                <div className="inline-flex rounded-full p-0.5 bg-white/5 border border-white/10">
+                  <Link
+                    href="/restaurants"
+                    className={`px-3.5 py-1.5 rounded-full text-[11.5px] font-semibold transition-all ${
+                      isRestaurants
+                        ? "bg-[#D4BFA6] text-[#052838]"
+                        : "text-white/85 hover:text-white"
+                    }`}
+                    aria-pressed={isRestaurants}
+                  >
+                    Restaurantes
+                  </Link>
+                  <Link
+                    href="/users"
+                    className={`px-3.5 py-1.5 rounded-full text-[11.5px] font-semibold transition-all ${
+                      isUsers
+                        ? "bg-[#F4BF00] text-[#052838]"
+                        : "text-white/85 hover:text-white"
+                    }`}
+                    aria-pressed={isUsers}
+                  >
+                    Usuarios
+                  </Link>
+                </div>
+              </nav>
+            )}
           </div>
         </div>
       </div>

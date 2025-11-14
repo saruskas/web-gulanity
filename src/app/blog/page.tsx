@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
   title: "Blog - Gulanity",
@@ -45,102 +47,69 @@ const blogPosts = [
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#052838] to-gray-800 text-white py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Blog de <span className="text-[#FCDB7D]">Gulanity</span>
-            </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Descubre consejos, tendencias y guías sobre gastronomía, tecnología alimentaria 
-              y estrategias para restaurantes. Tu fuente de conocimiento culinario.
-            </p>
+    <div className="min-h-screen bg-white text-[#052838]">
+      <Header />
+      <main>
+        <section className="section-gap bg-white border-b border-gray-100 pt-24 md:pt-28">
+          <div className="container-outer">
+            <div className="max-w-3xl mx-auto text-center">
+              <p className="text-xs tracking-[0.4em] uppercase text-[#052838]/60 mb-4">Historias Gulanity</p>
+              <h1 className="text-[#052838] font-display mb-6">Blog de Gulanity</h1>
+              <p className="text-[#052838]/70 leading-relaxed">
+                Tendencias, aprendizajes y tácticas para que restaurantes y foodies tomen mejores decisiones. Seleccionamos historias con la misma curaduría que aplicamos en cada experiencia de la plataforma.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Blog Posts Grid */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
-              <article
-                key={post.slug}
-                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100"
-              >
-                {/* Post Image */}
-                <div className="aspect-video bg-gradient-to-br from-[#FCDB7D] to-yellow-300 relative">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-[#052838] font-semibold text-lg text-center px-4">
-                      {post.title}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Post Content */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="inline-block px-3 py-1 text-xs font-semibold text-[#052838] bg-[#FCDB7D] rounded-full">
+        </section>
+        <section className="section-gap bg-gray-50">
+          <div className="container-outer">
+            <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+              {blogPosts.map((post) => (
+                <article key={post.slug} className="rounded-3xl border border-gray-100 bg-white p-6 shadow-[0_20px_45px_rgba(5,20,46,0.08)] flex flex-col gap-4">
+                  <div className="text-xs uppercase tracking-wide text-[#052838]/60 flex items-center justify-between">
+                    <span className="inline-flex items-center gap-2 rounded-full border border-[#D4BFA6]/40 bg-[#D4BFA6]/10 px-3 py-1 text-[#052838] font-semibold">
                       {post.category}
                     </span>
-                    <div className="flex items-center text-sm text-gray-500">
-                      <span>{post.readTime}</span>
-                    </div>
+                    <span>{post.readTime}</span>
                   </div>
-
-                  <h2 className="text-xl font-bold text-[#052838] mb-3 line-clamp-2">
-                    {post.title}
-                  </h2>
-
-                  <p className="text-gray-600 mb-4 line-clamp-3">
-                    {post.summary}
-                  </p>
-
-                  <div className="flex items-center justify-between">
-                    <time className="text-sm text-gray-500">
-                      {new Date(post.date).toLocaleDateString('es-ES', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
+                  <h2 className="text-2xl font-semibold text-[#052838]">{post.title}</h2>
+                  <p className="text-sm leading-relaxed text-[#052838]/70 flex-1">{post.summary}</p>
+                  <div className="flex items-center justify-between text-sm text-[#052838]/60">
+                    <time>
+                      {new Date(post.date).toLocaleDateString("es-ES", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
                       })}
                     </time>
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="inline-flex items-center text-[#052838] hover:text-[#FCDB7D] font-semibold transition-colors"
-                    >
+                    <Link href={`/blog/${post.slug}`} className="inline-flex items-center gap-2 text-[#052838] font-semibold hover:gap-3 transition-all">
                       Leer más
-                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </Link>
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Newsletter CTA */}
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-[#052838] mb-4">
-            ¿Te gustó nuestro contenido?
-          </h2>
-          <p className="text-gray-600 mb-8">
-            Suscríbete a nuestro newsletter y recibe los últimos artículos, 
-            consejos y novedades directamente en tu bandeja de entrada.
-          </p>
-          <Link
-            href="#newsletter"
-            className="inline-block px-8 py-3 bg-gradient-to-r from-[#FCDB7D] to-yellow-300 text-[#052838] font-semibold rounded-full hover:opacity-90 transition-opacity"
-          >
-            Suscribirse al Newsletter
-          </Link>
-        </div>
-      </section>
+        </section>
+        <section className="section-gap bg-white">
+          <div className="container-outer">
+            <div className="rounded-[32px] border border-gray-100 bg-gray-50 p-10 text-center shadow-sm space-y-5">
+              <p className="text-xs uppercase tracking-[0.4em] text-[#052838]/50">Newsletter</p>
+              <h2 className="text-[#052838] font-display text-3xl">¿Te gustó nuestro contenido?</h2>
+              <p className="text-[#052838]/70 max-w-2xl mx-auto">
+                Suscríbete para recibir historias relevantes sobre data gastronómica, fidelización e innovación sin ruido y con el tono cercano de Gulanity.
+              </p>
+              <Link href="#newsletter" className="inline-flex items-center justify-center rounded-full bg-[#D4BFA6] px-8 py-3 font-semibold text-[#052838] hover:opacity-90 transition-opacity">
+                Suscribirse al newsletter
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
     </div>
   );
 }
