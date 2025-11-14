@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 // Arrow Up Icon Component
 function IconArrowUp({ className = "w-5 h-5" }: { className?: string }) {
@@ -19,6 +20,11 @@ function IconArrowUp({ className = "w-5 h-5" }: { className?: string }) {
 
 export default function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
+  const isRestaurants = pathname === '/restaurants';
+  const isUsers = pathname === '/users';
+  const brandColor = isRestaurants ? '#D4BFA6' : isUsers ? '#F4BF00' : '#FCDB7D';
+  const brandText = '#052838';
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -43,10 +49,22 @@ export default function BackToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-6 right-6 bg-[#FCDB7D] hover:bg-[#052838] hover:text-[#FCDB7D] text-[#052838] p-3 rounded-full shadow-lg transition-all duration-300 z-50 ${
+      style={{
+        backgroundColor: brandColor,
+        color: brandText,
+      }}
+      className={`fixed bottom-6 right-6 p-3 rounded-full shadow-lg transition-all duration-300 z-50 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
       }`}
       aria-label="Volver arriba"
+      onMouseEnter={(e) => {
+        e.currentTarget.style.backgroundColor = '#052838';
+        e.currentTarget.style.color = brandColor;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.backgroundColor = brandColor;
+        e.currentTarget.style.color = brandText;
+      }}
     >
       <IconArrowUp className="w-5 h-5" />
     </button>

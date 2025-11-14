@@ -15,15 +15,37 @@ export default function Header() {
   const isRestaurants = pathname === "/restaurants";
   const isUsers = pathname === "/users";
 
-  const navLinks = [
-    { label: "Inicio", href: "#hero", mode: "anchor" as const },
-    { label: "Qué ganas", href: "#que-ganas", mode: "anchor" as const },
-    { label: "Beneficios", href: "#beneficios", mode: "anchor" as const },
-    { label: "Impacto", href: "#impacto", mode: "anchor" as const },
-    { label: "Cómo funciona", href: "#como-funciona", mode: "anchor" as const },
-    { label: "Lista de espera", href: "#lista-espera", mode: "anchor" as const },
-    { label: "Blog", href: "/blog", mode: "route" as const },
-  ];
+  const navLinks = isRestaurants
+    ? [
+        { label: "Inicio", href: "#hero", mode: "anchor" as const },
+        { label: "Qué ganas", href: "#que-ganas", mode: "anchor" as const },
+        { label: "Beneficios", href: "#beneficios", mode: "anchor" as const },
+        { label: "Impacto", href: "#impacto", mode: "anchor" as const },
+        { label: "Cómo funciona", href: "#como-funciona", mode: "anchor" as const },
+        { label: "Lista de espera", href: "#lista-espera", mode: "anchor" as const },
+        { label: "Feedback", href: "#feedback", mode: "anchor" as const },
+        { label: "Blog", href: "/blog", mode: "route" as const },
+      ]
+    : isUsers
+    ? [
+        { label: "Inicio", href: "#hero", mode: "anchor" as const },
+        { label: "Qué ganas", href: "#que-ganas", mode: "anchor" as const },
+        { label: "Beneficios", href: "#beneficios", mode: "anchor" as const },
+        { label: "Impacto", href: "#impacto", mode: "anchor" as const },
+        { label: "Cómo funciona", href: "#como-funciona", mode: "anchor" as const },
+        { label: "Lista de espera", href: "#lista-espera", mode: "anchor" as const },
+        { label: "Feedback", href: "#feedback", mode: "anchor" as const },
+        { label: "Blog", href: "/blog", mode: "route" as const },
+      ]
+    : [
+        { label: "Inicio", href: "#hero", mode: "anchor" as const },
+        { label: "Qué ganas", href: "#que-ganas", mode: "anchor" as const },
+        { label: "Beneficios", href: "#beneficios", mode: "anchor" as const },
+        { label: "Impacto", href: "#impacto", mode: "anchor" as const },
+        { label: "Cómo funciona", href: "#como-funciona", mode: "anchor" as const },
+        { label: "Lista de espera", href: "#lista-espera", mode: "anchor" as const },
+        { label: "Blog", href: "/blog", mode: "route" as const },
+      ];
 
   // Cerrar con clic/touch fuera y con Escape. Además, bloquear scroll cuando el menú está abierto.
   useEffect(() => {

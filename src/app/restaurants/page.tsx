@@ -51,11 +51,11 @@ export default function RestaurantsPage() {
 
                 {/* Botones centrados */}
                 <div className="flex flex-wrap items-center justify-center gap-3">
-                  <a href="#lista-espera" className="btn btn-md btn-gold">
-                    Únete a la lista de espera
+                  <a href="#que-ganas" className="btn btn-md btn-gold">
+                    Qué ganas
                   </a>
-                  <a href="mailto:hola@gulanity.com" className="btn btn-md btn-outline">
-                    Reserva una demo
+                  <a href="https://platform.dev.gulanity.com/login" target="_blank" rel="noopener noreferrer" className="btn btn-md btn-outline">
+                    Quiero unirme
                   </a>
                 </div>
               </div>
@@ -188,19 +188,79 @@ export default function RestaurantsPage() {
 
       {/* Lista de espera */}
       <section id="lista-espera" className="section-gap bg-white">
-        <div className="container-outer max-w-3xl text-center">
-          <h2 className="text-[#052838] mb-3">Únete a la lista de espera</h2>
-          <p className="text-base text-gray-600 mb-10">
+        <div className="container-outer max-w-2xl">
+          <h2 className="text-[#052838] text-center mb-2">Únete a la lista de espera</h2>
+          <p className="text-sm text-gray-600 text-center mb-8">
             Forma parte del futuro de la gastronomía.
           </p>
 
-          <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-10">
-            <p className="text-gray-600 mb-6 text-sm">
-              Formulario de registro próximamente disponible.
-            </p>
-            <a href="mailto:hola@gulanity.com" className="btn btn-md btn-gold inline-flex">
-              Contactar por email
-            </a>
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8">
+            <form className="flex gap-3 justify-center" onSubmit={(e) => { e.preventDefault(); }}>
+              <input
+                type="email"
+                id="waitlist-email"
+                name="email"
+                className="w-64 max-w-full px-4 py-2 border border-gray-200 rounded-lg text-sm text-[#052838] focus:outline-none focus:ring-2 focus:ring-[#D4BFA6]/50 focus:border-[#D4BFA6] transition-all"
+                placeholder="tu@email.com"
+                required
+              />
+              <button
+                type="submit"
+                className="btn btn-md btn-gold whitespace-nowrap"
+              >
+                Unirme
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Feedback */}
+      <section id="feedback" className="section-gap bg-gray-50">
+        <div className="container-outer max-w-2xl">
+          <h2 className="text-[#052838] text-center mb-2">Feedback</h2>
+          <p className="text-sm text-gray-600 text-center mb-8">
+            Comparte tu opinión y ayúdanos a mejorar.
+          </p>
+
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8">
+            <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); }}>
+              <div>
+                <input
+                  type="text"
+                  id="feedback-name"
+                  name="name"
+                  className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm text-[#052838] focus:outline-none focus:ring-2 focus:ring-[#D4BFA6]/50 focus:border-[#D4BFA6] transition-all"
+                  placeholder="Nombre"
+                />
+              </div>
+              <div>
+                <input
+                  type="email"
+                  id="feedback-email"
+                  name="email"
+                  className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm text-[#052838] focus:outline-none focus:ring-2 focus:ring-[#D4BFA6]/50 focus:border-[#D4BFA6] transition-all"
+                  placeholder="Email"
+                />
+              </div>
+              <div>
+                <textarea
+                  id="feedback-message"
+                  name="message"
+                  rows={4}
+                  className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm text-[#052838] focus:outline-none focus:ring-2 focus:ring-[#D4BFA6]/50 focus:border-[#D4BFA6] transition-all resize-none"
+                  placeholder="Mensaje"
+                />
+              </div>
+              <div className="text-center pt-2">
+                <button
+                  type="submit"
+                  className="btn btn-md btn-gold inline-flex"
+                >
+                  Enviar
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </section>

@@ -1,71 +1,121 @@
 "use client";
 
+import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import HeroUserShowcase from "../components/HeroUserShowcase";
 import { CheckCircle2, Heart, Sparkles, Shield, Star } from "lucide-react";
 
 export default function UsersPage() {
+  const [selectedPlatform, setSelectedPlatform] = useState<"ios" | "android">("ios");
+
   return (
     <div className="min-h-screen">
       <Header />
 
       {/* Hero Section (Users) */}
-      <section id="hero" className="hero-full flex items-center">
+      <section id="hero" className="hero-full flex items-center" style={{ background: 'white' }}>
         <div className="container-outer w-full py-10 md:py-12">
           <div className="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              {/* Toggle en el hero */}
-              <div className="mb-5">
-                <div className="inline-flex rounded-full p-1 bg-white/5 border border-white/10">
-                  <a
-                    href="/restaurants"
-                    className="px-4 py-1.5 text-white/85 hover:text-white rounded-full text-xs font-semibold transition-all"
-                    aria-pressed="false"
-                  >
-                    Soy Restaurante
+            {/* Columna izquierda: diseño centrado internamente */}
+            <div className="justify-self-start">
+              <div className="max-w-xl mx-0 md:mx-0 flex flex-col items-center text-center">
+                {/* Toggle centrado */}
+                <div className="mb-6">
+                  <div className="inline-flex rounded-full p-1 bg-gray-100 border border-gray-200">
+                    <a
+                      href="/restaurants"
+                      className="px-5 py-2 text-[#052838]/70 hover:text-[#052838] rounded-full text-xs font-semibold transition-all"
+                      aria-pressed="false"
+                    >
+                      Soy Restaurante
+                    </a>
+                    <a
+                      href="/users"
+                      className="px-5 py-2 bg-[#F4BF00] text-[#052838] rounded-full text-xs font-semibold transition-all"
+                      aria-pressed="true"
+                    >
+                      Soy Usuario
+                    </a>
+                  </div>
+                </div>
+
+                {/* Title centrado */}
+                <h1 className="text-[#052838] font-display mb-4">
+                  Elegir bien, siempre.
+                </h1>
+
+                {/* Subtitle centrado */}
+                <p className="text-[#052838]/70 leading-relaxed mb-8">
+                  Encuentra platos y restaurantes que encajan contigo gracias a recomendaciones reales.
+                </p>
+
+                {/* Botones centrados */}
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <a href="#que-ganas" className="btn btn-md btn-yellow">
+                    Qué ganas
                   </a>
-                  <a
-                    href="/users"
-                    className="px-4 py-1.5 bg-[#F4BF00] text-[#052838] rounded-full text-xs font-semibold transition-all"
-                    aria-pressed="true"
-                  >
-                    Soy Usuario
+                  <a href="#impacto" className="btn btn-md border border-[#052838]/20 bg-white text-[#052838] hover:bg-gray-50">
+                    Saber más
                   </a>
                 </div>
-              </div>
 
-              <h1 className="text-white font-display mb-4">
-                Elegir bien, siempre.
-              </h1>
+                {/* Bloque de descarga con QR */}
+                <div className="w-full max-w-xs mt-10">
+                  <div className="bg-gray-50 border border-gray-200 rounded-2xl p-4">
+                    <p className="text-[#052838] text-xs font-semibold mb-3 text-center">Descarga la app</p>
 
-              <p className="text-white/70 max-w-xl mb-7 leading-relaxed">
-                Encuentra platos y restaurantes que encajan contigo gracias a recomendaciones reales.
-              </p>
+                    {/* Toggle iOS / Android */}
+                    <div className="flex items-center justify-center gap-2 mb-3">
+                      <button
+                        onClick={() => setSelectedPlatform("ios")}
+                        className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
+                          selectedPlatform === "ios"
+                            ? "bg-[#F4BF00] text-[#052838]"
+                            : "bg-gray-200 text-[#052838]/70 hover:text-[#052838]"
+                        }`}
+                        aria-pressed={selectedPlatform === "ios"}
+                      >
+                        iOS
+                      </button>
+                      <button
+                        onClick={() => setSelectedPlatform("android")}
+                        className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
+                          selectedPlatform === "android"
+                            ? "bg-[#F4BF00] text-[#052838]"
+                            : "bg-gray-200 text-[#052838]/70 hover:text-[#052838]"
+                        }`}
+                        aria-pressed={selectedPlatform === "android"}
+                      >
+                        Android
+                      </button>
+                    </div>
 
-              <div className="flex flex-wrap items-center gap-3">
-                <a href="#lista-espera" className="btn btn-md btn-yellow">
-                  Únete a la lista de espera
-                </a>
-                <a href="#que-ganas" className="btn btn-md btn-outline">
-                  Saber más
-                </a>
+                    {/* QR Code */}
+                    <div className="flex justify-center">
+                      <div className="bg-white rounded-lg p-2 w-24 h-24 flex items-center justify-center">
+                        <img
+                          src={selectedPlatform === "ios" ? "/qr-ios-mock.jpeg" : "/qr-android-mock.jpeg"}
+                          alt={`QR code para descargar Gulanity en ${selectedPlatform === "ios" ? "iOS" : "Android"}`}
+                          className="w-full h-full object-contain rounded"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <figure className="relative w-full max-w-md md:max-w-none mx-auto">
-              <img
-                src="/hero-users.png"
-                alt="Gulanity para usuarios"
-                className="w-full h-auto object-contain"
-                loading="eager"
-              />
-            </figure>
+            {/* Columna derecha: Mobile Mockup */}
+            <div className="relative w-full max-w-md md:max-w-none mx-auto">
+              <HeroUserShowcase />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Qué ganas */}
-      <section id="que-ganas" className="section-gap bg-white">
+      <section id="que-ganas" className="section-gap bg-gray-50">
         <div className="container-outer">
           <h2 className="text-[#052838] text-center mb-10 md:mb-12">Qué ganas</h2>
 
@@ -87,7 +137,7 @@ export default function UsersPage() {
       </section>
 
       {/* Beneficios que se notan */}
-      <section id="beneficios" className="section-gap bg-gray-50">
+      <section id="beneficios" className="section-gap bg-white">
         <div className="container-outer">
           <h2 className="text-[#052838] text-center mb-2">La diferencia es clara</h2>
           <p className="text-sm text-gray-500 text-center mb-10 md:mb-12">
@@ -112,7 +162,7 @@ export default function UsersPage() {
       </section>
 
       {/* Por qué es diferente */}
-      <section id="impacto" className="section-gap bg-white">
+      <section id="impacto" className="section-gap bg-gray-50">
         <div className="container-outer max-w-4xl">
           <h2 className="text-[#052838] text-center mb-10 md:mb-12">
             Por qué es diferente
@@ -142,7 +192,7 @@ export default function UsersPage() {
       </section>
 
       {/* Cómo funciona */}
-      <section id="como-funciona" className="section-gap bg-gray-50">
+      <section id="como-funciona" className="section-gap bg-white">
         <div className="container-outer">
           <h2 className="text-[#052838] text-center mb-10 md:mb-12">
             Cómo funciona
@@ -169,9 +219,9 @@ export default function UsersPage() {
       </section>
 
       {/* Testimonios */}
-      <section className="section-gap bg-white">
+      <section className="section-gap bg-gray-50">
         <div className="container-outer max-w-3xl">
-          <div className="bg-gray-50 border border-gray-200 rounded-3xl p-6 md:p-10">
+          <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-10">
             <p className="text-xl md:text-2xl font-display text-[#052838] mb-5 leading-relaxed">
               "Encontré mi restaurante favorito gracias a Gulanity. Ahora sé que no me van a decepcionar."
             </p>
@@ -184,25 +234,80 @@ export default function UsersPage() {
       </section>
 
       {/* Lista de espera */}
-      <section id="lista-espera" className="section-gap bg-gray-50">
-        <div className="container-outer max-w-3xl text-center">
-          <h2 className="text-[#052838] mb-3">
-            Únete a la lista de espera
-          </h2>
-          <p className="text-base text-gray-600 mb-10">
+      <section id="lista-espera" className="section-gap bg-white">
+        <div className="container-outer max-w-2xl">
+          <h2 className="text-[#052838] text-center mb-2">Únete a la lista de espera</h2>
+          <p className="text-sm text-gray-600 text-center mb-8">
             Sé de los primeros en descubrir una nueva forma de elegir restaurante.
           </p>
 
-          <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-10">
-            <p className="text-gray-600 mb-6 text-sm">
-              Formulario de registro próximamente disponible.
-            </p>
-            <a
-              href="mailto:hola@gulanity.com"
-              className="btn btn-md btn-yellow inline-flex"
-            >
-              Contactar por email
-            </a>
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8">
+            <form className="flex gap-3 justify-center" onSubmit={(e) => { e.preventDefault(); }}>
+              <input
+                type="email"
+                id="waitlist-email"
+                name="email"
+                className="w-64 max-w-full px-4 py-2 border border-gray-200 rounded-lg text-sm text-[#052838] focus:outline-none focus:ring-2 focus:ring-[#F4BF00]/50 focus:border-[#F4BF00] transition-all"
+                placeholder="tu@email.com"
+                required
+              />
+              <button
+                type="submit"
+                className="btn btn-md btn-yellow whitespace-nowrap"
+              >
+                Unirme
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Feedback */}
+      <section id="feedback" className="section-gap bg-gray-50">
+        <div className="container-outer max-w-2xl">
+          <h2 className="text-[#052838] text-center mb-2">Feedback</h2>
+          <p className="text-sm text-gray-600 text-center mb-8">
+            Comparte tu opinión y ayúdanos a mejorar.
+          </p>
+
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8">
+            <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); }}>
+              <div>
+                <input
+                  type="text"
+                  id="feedback-name"
+                  name="name"
+                  className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm text-[#052838] focus:outline-none focus:ring-2 focus:ring-[#F4BF00]/50 focus:border-[#F4BF00] transition-all"
+                  placeholder="Nombre"
+                />
+              </div>
+              <div>
+                <input
+                  type="email"
+                  id="feedback-email"
+                  name="email"
+                  className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm text-[#052838] focus:outline-none focus:ring-2 focus:ring-[#F4BF00]/50 focus:border-[#F4BF00] transition-all"
+                  placeholder="Email"
+                />
+              </div>
+              <div>
+                <textarea
+                  id="feedback-message"
+                  name="message"
+                  rows={4}
+                  className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm text-[#052838] focus:outline-none focus:ring-2 focus:ring-[#F4BF00]/50 focus:border-[#F4BF00] transition-all resize-none"
+                  placeholder="Mensaje"
+                />
+              </div>
+              <div className="text-center pt-2">
+                <button
+                  type="submit"
+                  className="btn btn-md btn-yellow inline-flex"
+                >
+                  Enviar
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </section>
