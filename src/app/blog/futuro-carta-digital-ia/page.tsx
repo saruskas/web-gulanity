@@ -2,31 +2,105 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import ScrollDepthTracker from "../../components/ScrollDepthTracker";
 
 export const metadata: Metadata = {
   title: "El futuro de la carta digital con IA | Gulanity Blog",
   description: "Explora cómo la inteligencia artificial está revolucionando las cartas digitales, mejorando la experiencia del cliente y optimizando las ventas.",
-  keywords: ["carta digital IA", "inteligencia artificial restaurantes", "menú digital", "tecnología gastronómica", "innovación restaurantes"],
   authors: [{ name: "Equipo Gulanity" }],
   openGraph: {
     title: "El futuro de la carta digital con IA",
     description: "Explora cómo la inteligencia artificial está revolucionando las cartas digitales, mejorando la experiencia del cliente y optimizando las ventas.",
     type: "article",
+    url: "https://gulanity.com/blog/futuro-carta-digital-ia",
     publishedTime: "2025-08-01T10:00:00.000Z",
     authors: ["Equipo Gulanity"],
+    images: [{ url: "https://gulanity.com/blog/futuro-carta-digital-ia/opengraph-image", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "El futuro de la carta digital con IA",
     description: "Explora cómo la inteligencia artificial está revolucionando las cartas digitales, mejorando la experiencia del cliente y optimizando las ventas.",
+    images: ["https://gulanity.com/blog/futuro-carta-digital-ia/opengraph-image"],
+  },
+  alternates: {
+    canonical: "https://gulanity.com/blog/futuro-carta-digital-ia",
   },
 };
 
 export default function BlogPost() {
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: "El futuro de la carta digital con IA",
+    description:
+      "Explora cómo la inteligencia artificial está revolucionando las cartas digitales, mejorando la experiencia del cliente y optimizando las ventas.",
+    image: {
+      "@type": "ImageObject",
+      url: "https://gulanity.com/blog/futuro-carta-digital-ia/opengraph-image",
+      width: 1200,
+      height: 630,
+      caption: "Ilustración de carta digital con inteligencia artificial",
+    },
+    author: {
+      "@type": "Organization",
+      name: "Gulanity",
+      url: "https://gulanity.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://gulanity.com/logo.png",
+        width: 500,
+        height: 500,
+      },
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Gulanity",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://gulanity.com/logo.png",
+        width: 500,
+        height: 500,
+      },
+    },
+    datePublished: "2025-08-01T10:00:00.000Z",
+    dateModified: "2025-08-01T10:00:00.000Z",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://gulanity.com/blog/futuro-carta-digital-ia",
+    },
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Inicio",
+        item: "https://gulanity.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: "https://gulanity.com/blog",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "El futuro de la carta digital con IA",
+        item: "https://gulanity.com/blog/futuro-carta-digital-ia",
+      },
+    ],
+  };
   return (
     <div className="min-h-screen bg-white text-[#052838]">
       <Header />
       <main>
+        <ScrollDepthTracker page="blog-futuro-carta-digital-ia" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
         <nav className="bg-white border-b border-gray-100">
           <div className="container-outer py-4 text-sm text-[#052838]/70 flex flex-wrap items-center gap-1">
             <Link href="/" className="hover:text-[#052838]">Inicio</Link>

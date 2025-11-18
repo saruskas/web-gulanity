@@ -2,31 +2,90 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import ScrollDepthTracker from "../../components/ScrollDepthTracker";
 
 export const metadata: Metadata = {
   title: "5 formas de fidelizar clientes en tu restaurante | Gulanity Blog",
   description: "Estrategias probadas para convertir visitantes ocasionales en clientes habituales. Desde programas de lealtad hasta experiencias personalizadas.",
-  keywords: ["fidelización clientes restaurante", "marketing restaurantes", "programas lealtad", "retención clientes", "estrategias restaurante"],
   authors: [{ name: "Equipo Gulanity" }],
   openGraph: {
     title: "5 formas de fidelizar clientes en tu restaurante",
     description: "Estrategias probadas para convertir visitantes ocasionales en clientes habituales. Desde programas de lealtad hasta experiencias personalizadas.",
     type: "article",
+    url: "https://gulanity.com/blog/5-formas-fidelizar-clientes-restaurante",
     publishedTime: "2025-08-03T10:00:00.000Z",
     authors: ["Equipo Gulanity"],
+    images: [{ url: "https://gulanity.com/blog/5-formas-fidelizar-clientes-restaurante/opengraph-image", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "5 formas de fidelizar clientes en tu restaurante",
     description: "Estrategias probadas para convertir visitantes ocasionales en clientes habituales. Desde programas de lealtad hasta experiencias personalizadas.",
+    images: ["https://gulanity.com/blog/5-formas-fidelizar-clientes-restaurante/opengraph-image"],
+  },
+  alternates: {
+    canonical: "https://gulanity.com/blog/5-formas-fidelizar-clientes-restaurante",
   },
 };
 
 export default function BlogPost() {
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: "5 formas de fidelizar clientes en tu restaurante",
+    description:
+      "Estrategias probadas para convertir visitantes ocasionales en clientes habituales. Desde programas de lealtad hasta experiencias personalizadas.",
+    image: {
+      "@type": "ImageObject",
+      url: "https://gulanity.com/blog/5-formas-fidelizar-clientes-restaurante/opengraph-image",
+      width: 1200,
+      height: 630,
+      caption: "Ilustración de clientes fidelizados en un restaurante",
+    },
+    author: {
+      "@type": "Organization",
+      name: "Gulanity",
+      url: "https://gulanity.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://gulanity.com/logo.png",
+        width: 500,
+        height: 500,
+      },
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Gulanity",
+      logo: { "@type": "ImageObject", url: "https://gulanity.com/logo.png", width: 500, height: 500 },
+    },
+    datePublished: "2025-08-03T10:00:00.000Z",
+    dateModified: "2025-08-03T10:00:00.000Z",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://gulanity.com/blog/5-formas-fidelizar-clientes-restaurante",
+    },
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: "https://gulanity.com" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://gulanity.com/blog" },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "5 formas de fidelizar clientes en tu restaurante",
+        item: "https://gulanity.com/blog/5-formas-fidelizar-clientes-restaurante",
+      },
+    ],
+  };
   return (
     <div className="min-h-screen bg-white text-[#052838]">
       <Header />
       <main>
+        <ScrollDepthTracker page="blog-5-formas-fidelizar-clientes-restaurante" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
         <nav className="bg-white border-b border-gray-100">
           <div className="container-outer py-4 text-sm text-[#052838]/70 flex flex-wrap items-center gap-1">
             <Link href="/" className="hover:text-[#052838]">Inicio</Link>

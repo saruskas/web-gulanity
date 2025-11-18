@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
@@ -31,6 +31,20 @@ export default function HeroPlatformMockup({
   const prefersReduced = useReducedMotion();
   const timerRef = useRef<number | null>(null);
 
+  const clear = useCallback(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
+
+  const schedule = useCallback(() => {
+    clear();
+    timerRef.current = window.setTimeout(() => {
+      setIdx((p) => (p + 1) % slides.length);
+    }, intervalMs) as unknown as number;
+  }, [clear, intervalMs, slides.length]);
+
   // rotación con pausa en hover y cuando pestaña oculta
   useEffect(() => {
     const onVis = () => {
@@ -39,7 +53,7 @@ export default function HeroPlatformMockup({
     };
     document.addEventListener("visibilitychange", onVis);
     return () => document.removeEventListener("visibilitychange", onVis);
-  }, []);
+  }, [clear, schedule]);
 
   useEffect(() => {
     if (hover || prefersReduced) {
@@ -48,20 +62,7 @@ export default function HeroPlatformMockup({
     }
     schedule();
     return clear;
-  }, [idx, hover, prefersReduced]);
-
-  function schedule() {
-    clear();
-    timerRef.current = window.setTimeout(() => {
-      setIdx((p) => (p + 1) % slides.length);
-    }, intervalMs) as unknown as number;
-  }
-  function clear() {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-    }
-  }
+  }, [idx, hover, prefersReduced, schedule, clear]);
 
   const currentSlide = slides[idx];
 

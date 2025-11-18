@@ -1,0 +1,27 @@
+{
+  "name": "Gulanity - Descubre restaurantes",
+  "short_name": "Gulanity",
+  "description": "Conecta con restaurantes locales y descubre platos auténticos sin sorpresas.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#052838",
+  "theme_color": "#F4BF00",
+  "orientation": "portrait-primary",
+  "categories": ["food", "lifestyle", "entertainment"],
+  "lang": "es-ES",
+  "icons": [
+    {
+      "src": "/logo_rest.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo_user.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
+

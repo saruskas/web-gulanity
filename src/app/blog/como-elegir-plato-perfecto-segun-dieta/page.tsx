@@ -2,31 +2,90 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import ScrollDepthTracker from "../../components/ScrollDepthTracker";
 
 export const metadata: Metadata = {
   title: "Cómo elegir el plato perfecto según tu dieta | Gulanity Blog",
   description: "Descubre las claves para seleccionar platos que se adapten perfectamente a tus necesidades dietéticas, desde vegano hasta keto, sin renunciar al sabor.",
-  keywords: ["dieta personalizada", "elegir platos", "alimentación saludable", "dieta vegana", "dieta keto", "nutrición restaurantes"],
   authors: [{ name: "Equipo Gulanity" }],
   openGraph: {
     title: "Cómo elegir el plato perfecto según tu dieta",
     description: "Descubre las claves para seleccionar platos que se adapten perfectamente a tus necesidades dietéticas, desde vegano hasta keto, sin renunciar al sabor.",
     type: "article",
+    url: "https://gulanity.com/blog/como-elegir-plato-perfecto-segun-dieta",
     publishedTime: "2025-08-05T10:00:00.000Z",
     authors: ["Equipo Gulanity"],
+    images: [{ url: "https://gulanity.com/blog/como-elegir-plato-perfecto-segun-dieta/opengraph-image", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Cómo elegir el plato perfecto según tu dieta",
     description: "Descubre las claves para seleccionar platos que se adapten perfectamente a tus necesidades dietéticas, desde vegano hasta keto, sin renunciar al sabor.",
+    images: ["https://gulanity.com/blog/como-elegir-plato-perfecto-segun-dieta/opengraph-image"],
+  },
+  alternates: {
+    canonical: "https://gulanity.com/blog/como-elegir-plato-perfecto-segun-dieta",
   },
 };
 
 export default function BlogPost() {
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: "Cómo elegir el plato perfecto según tu dieta",
+    description:
+      "Descubre las claves para seleccionar platos que se adapten perfectamente a tus necesidades dietéticas, desde vegano hasta keto, sin renunciar al sabor.",
+    image: {
+      "@type": "ImageObject",
+      url: "https://gulanity.com/blog/como-elegir-plato-perfecto-segun-dieta/opengraph-image",
+      width: 1200,
+      height: 630,
+      caption: "Selección de platos adaptados a diferentes dietas",
+    },
+    author: {
+      "@type": "Organization",
+      name: "Gulanity",
+      url: "https://gulanity.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://gulanity.com/logo.png",
+        width: 500,
+        height: 500,
+      },
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Gulanity",
+      logo: { "@type": "ImageObject", url: "https://gulanity.com/logo.png", width: 500, height: 500 },
+    },
+    datePublished: "2025-08-05T10:00:00.000Z",
+    dateModified: "2025-08-05T10:00:00.000Z",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://gulanity.com/blog/como-elegir-plato-perfecto-segun-dieta",
+    },
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: "https://gulanity.com" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://gulanity.com/blog" },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Cómo elegir el plato perfecto según tu dieta",
+        item: "https://gulanity.com/blog/como-elegir-plato-perfecto-segun-dieta",
+      },
+    ],
+  };
   return (
     <div className="min-h-screen bg-white text-[#052838]">
       <Header />
       <main>
+        <ScrollDepthTracker page="blog-como-elegir-plato-perfecto-segun-dieta" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
         <nav className="bg-white border-b border-gray-100">
           <div className="container-outer py-4 text-sm text-[#052838]/70 flex flex-wrap items-center gap-1">
             <Link href="/" className="hover:text-[#052838]">Inicio</Link>

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
@@ -33,6 +33,20 @@ export default function PlatformShowcase({
   const prefersReduced = useReducedMotion();
   const timerRef = useRef<number | null>(null);
 
+  const clear = useCallback(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
+
+  const schedule = useCallback(() => {
+    clear();
+    timerRef.current = window.setTimeout(() => {
+      setIdx((p) => (p + 1) % screenshots.length);
+    }, intervalMs) as unknown as number;
+  }, [clear, intervalMs, screenshots.length]);
+
   // rotación segura (pausa al cambiar de pestaña o al hacer hover)
   useEffect(() => {
     const onVis = () => {
@@ -42,7 +56,7 @@ export default function PlatformShowcase({
     };
     document.addEventListener("visibilitychange", onVis);
     return () => document.removeEventListener("visibilitychange", onVis);
-  }, []);
+  }, [clear, schedule]);
 
   useEffect(() => {
     if (hover || prefersReduced) {
@@ -51,20 +65,7 @@ export default function PlatformShowcase({
     }
     schedule();
     return clear;
-  }, [idx, hover, prefersReduced]);
-
-  function schedule() {
-    clear();
-    timerRef.current = window.setTimeout(() => {
-      setIdx((p) => (p + 1) % screenshots.length);
-    }, intervalMs) as unknown as number;
-  }
-  function clear() {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-    }
-  }
+  }, [idx, hover, prefersReduced, schedule, clear]);
 
   const leftCards = useMemo(() => cards.filter(c => (c.align ?? "left") === "left"), [cards]);
   const rightCards = useMemo(() => cards.filter(c => (c.align ?? "left") === "right"), [cards]);

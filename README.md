@@ -34,3 +34,30 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## 🚀 Configuración rápida
+
+### 1. Variables de entorno
+
+1. Copia el archivo de ejemplo y completa tus claves:
+
+   ```bash
+   cp .env.local.example .env.local
+   ```
+
+2. Define tus IDs:
+
+   - `NEXT_PUBLIC_GA_ID` → desde [Google Analytics](https://analytics.google.com/)
+   - `NEXT_PUBLIC_CLARITY_ID` (recomendado) → en [Microsoft Clarity](https://clarity.microsoft.com/) para heatmaps y session replay
+   - `NEXT_PUBLIC_HOTJAR_ID` (opcional; usa Clarity **o** Hotjar, no ambos)
+
+### 2. Scripts útiles
+
+```bash
+npm run dev          # Desarrollo
+npm run build        # Build de producción
+npm run lint         # Linter (Next.js)
+npm test             # Vitest en modo watch
+npm run test:ui      # Interfaz interactiva de Vitest
+npm run test:coverage # Cobertura
+```

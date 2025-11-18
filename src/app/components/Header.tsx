@@ -1,8 +1,10 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useScrolled } from "@/app/hooks/useScrolled";
+import { useFocusTrap } from "@/app/hooks/useFocusTrap";
 
 export default function Header() {
   const scrolled = useScrolled(2);
@@ -81,6 +83,8 @@ export default function Header() {
     };
   }, [menuOpen]);
 
+  useFocusTrap(panelRef, menuOpen);
+
   const handleMenuClick = (href: string) => {
     setMenuOpen(false);
     setTimeout(() => {
@@ -93,16 +97,8 @@ export default function Header() {
       <div className="container-outer h-full">
         <div className="h-full flex items-center justify-between gap-3 py-3">
           {/* Logo compacto */}
-          <Link
-            href={isRestaurants ? "/restaurants" : "/users"}
-            className="flex items-center gap-2"
-            aria-label="Gulanity"
-          >
-            <img
-              src={isUsers ? "/logo_user.png" : "/logo_rest.png"}
-              alt="Gulanity"
-              className="h-6 w-auto"
-            />
+          <Link href={isRestaurants ? "/restaurants" : "/users"} className="flex items-center gap-2" aria-label="Gulanity">
+            <Image src={isUsers ? "/logo_user.png" : "/logo_rest.png"} alt="Gulanity" width={120} height={32} className="h-6 w-auto" priority />
           </Link>
 
           {/* Derecha: Menú + Toggle */}
@@ -144,10 +140,8 @@ export default function Header() {
               <div
                 ref={panelRef}
                 className="absolute top-full right-0 mt-2 w-56 bg-[#052838] border border-white/10 rounded-xl shadow-xl z-[110] overflow-hidden"
-                role="menu"
-                aria-label="Navegación principal"
               >
-                <nav className="py-2">
+                <nav className="py-2" aria-label="Navegación principal">
                   <ul>
                     {navLinks.map((link) => (
                       <li key={link.href}>
@@ -159,7 +153,6 @@ export default function Header() {
                               handleMenuClick(link.href);
                             }}
                             className="block px-4 py-2.5 text-[13px] text-white/85 hover:text-white hover:bg-white/5 transition-colors"
-                            role="menuitem"
                           >
                             {link.label}
                           </a>
@@ -168,7 +161,6 @@ export default function Header() {
                             href={link.href}
                             onClick={() => setMenuOpen(false)}
                             className="block px-4 py-2.5 text-[13px] text-white/85 hover:text-white hover:bg-white/5 transition-colors"
-                            role="menuitem"
                           >
                             {link.label}
                           </Link>
@@ -195,22 +187,18 @@ export default function Header() {
                   <Link
                     href="/restaurants"
                     className={`px-3.5 py-1.5 rounded-full text-[11.5px] font-semibold transition-all ${
-                      isRestaurants
-                        ? "bg-[#D4BFA6] text-[#052838]"
-                        : "text-white/85 hover:text-white"
+                      isRestaurants ? "bg-[#D4BFA6] text-[#052838]" : "text-white/85 hover:text-white"
                     }`}
-                    aria-pressed={isRestaurants}
+                    aria-current={isRestaurants ? "page" : undefined}
                   >
                     Restaurantes
                   </Link>
                   <Link
                     href="/users"
                     className={`px-3.5 py-1.5 rounded-full text-[11.5px] font-semibold transition-all ${
-                      isUsers
-                        ? "bg-[#F4BF00] text-[#052838]"
-                        : "text-white/85 hover:text-white"
+                      isUsers ? "bg-[#F4BF00] text-[#052838]" : "text-white/85 hover:text-white"
                     }`}
-                    aria-pressed={isUsers}
+                    aria-current={isUsers ? "page" : undefined}
                   >
                     Usuarios
                   </Link>

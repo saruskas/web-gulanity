@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import * as React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -35,10 +36,7 @@ export default function Navbar() {
     <nav className="bg-[#052838]/95 backdrop-blur border-b border-white/10">
       <div className="mx-auto max-w-7xl px-4 h-16 flex items-center justify-between">
         <Link href="/" aria-label="Ir a la Home" className="flex items-center">
-          <picture>
-            <source media="(max-width: 640px)" srcSet="/logo_sm.png" />
-            <img src="/logo.png" alt="Gulanity" className="h-8" />
-          </picture>
+          <Image src="/logo.png" alt="Gulanity" width={140} height={40} className="h-8 w-auto" priority />
         </Link>
 
         {/* Desktop - Solo switcher */}

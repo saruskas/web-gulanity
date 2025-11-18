@@ -2,15 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ScrollDepthTracker from "../components/ScrollDepthTracker";
+import BlogNewsletterForm from "../components/BlogNewsletterForm";
 
 export const metadata: Metadata = {
   title: "Blog - Gulanity",
   description: "Descubre consejos sobre restaurantes, gastronomía y tecnología alimentaria. Guías para foodies y restaurantes en el blog de Gulanity.",
-  keywords: ["blog gastronomía", "consejos restaurantes", "tecnología alimentaria", "guías foodies", "marketing restaurantes"],
   openGraph: {
     title: "Blog - Gulanity",
     description: "Descubre consejos sobre restaurantes, gastronomía y tecnología alimentaria. Guías para foodies y restaurantes en el blog de Gulanity.",
     type: "website",
+    url: "https://gulanity.com/blog",
+    images: [{ url: "https://gulanity.com/blog/opengraph-image", width: 1200, height: 630 }],
+  },
+  alternates: {
+    canonical: "https://gulanity.com/blog",
   },
 };
 
@@ -50,6 +56,7 @@ export default function BlogPage() {
     <div className="min-h-screen bg-white text-[#052838]">
       <Header />
       <main>
+        <ScrollDepthTracker page="blog" />
         <section className="section-gap bg-white border-b border-gray-100 pt-24 md:pt-28">
           <div className="container-outer">
             <div className="max-w-3xl mx-auto text-center">
@@ -63,6 +70,10 @@ export default function BlogPage() {
         </section>
         <section className="section-gap bg-gray-50">
           <div className="container-outer">
+            <div className="max-w-2xl mx-auto text-center mb-10">
+              <h2 className="text-[#052838] font-display text-3xl md:text-4xl mb-3">Últimos artículos</h2>
+              <p className="text-[#052838]/70">Selección de historias recientes para restaurantes y foodies.</p>
+            </div>
             <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {blogPosts.map((post) => (
                 <article key={post.slug} className="rounded-3xl border border-gray-100 bg-white p-6 shadow-[0_20px_45px_rgba(5,20,46,0.08)] flex flex-col gap-4">
@@ -72,7 +83,7 @@ export default function BlogPage() {
                     </span>
                     <span>{post.readTime}</span>
                   </div>
-                  <h2 className="text-2xl font-semibold text-[#052838]">{post.title}</h2>
+                  <h3 className="text-2xl font-semibold text-[#052838]">{post.title}</h3>
                   <p className="text-sm leading-relaxed text-[#052838]/70 flex-1">{post.summary}</p>
                   <div className="flex items-center justify-between text-sm text-[#052838]/60">
                     <time>
@@ -102,9 +113,7 @@ export default function BlogPage() {
               <p className="text-[#052838]/70 max-w-2xl mx-auto">
                 Suscríbete para recibir historias relevantes sobre data gastronómica, fidelización e innovación sin ruido y con el tono cercano de Gulanity.
               </p>
-              <Link href="#newsletter" className="inline-flex items-center justify-center rounded-full bg-[#D4BFA6] px-8 py-3 font-semibold text-[#052838] hover:opacity-90 transition-opacity">
-                Suscribirse al newsletter
-              </Link>
+              <BlogNewsletterForm />
             </div>
           </div>
         </section>
