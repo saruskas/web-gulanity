@@ -1,24 +1,26 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function HomeHeroCtas() {
+  const router = useRouter();
+
   return (
     <div className="flex flex-wrap items-center gap-3">
-      <Link
-        href="/restaurants"
+      <button
+        type="button"
+        onClick={() => router.push("/restaurants")}
         className="btn btn-md bg-[#052838] text-white hover:bg-[#003F5C] border-none shadow-lg"
-        prefetch={true}
       >
         Soy restaurante
-      </Link>
-      <Link
-        href="/users"
+      </button>
+      <button
+        type="button"
+        onClick={() => router.push("/users")}
         className="btn btn-md bg-[#F4BF00] text-[#052838] hover:bg-[#e0ab00] border-none shadow-lg font-semibold"
-        prefetch={true}
       >
         Soy usuario
-      </Link>
+      </button>
     </div>
   );
 }

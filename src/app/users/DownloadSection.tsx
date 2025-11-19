@@ -43,17 +43,17 @@ export default function DownloadSection() {
                     Android
                   </button>
                 </div>
-                <div className="relative mb-10">
-                  <div className="absolute inset-0 bg-[#F4BF00]/8 blur-3xl rounded-full scale-150" aria-hidden="true" />
-                  <div className="relative bg-white rounded-3xl p-8 shadow-2xl border-2 border-gray-100">
+                <div className="relative mb-8">
+                  <div className="absolute inset-0 bg-[#F4BF00]/10 blur-2xl rounded-full scale-125" aria-hidden="true" />
+                  <div className="relative bg-white rounded-2xl p-5 shadow-xl border border-gray-100">
                     <Image
                       key={platform}
                       src={qrSrc}
                       alt={`Código QR para descargar Gulanity en ${platform === "ios" ? "iOS" : "Android"}`}
-                      width={240}
-                      height={240}
+                      width={180}
+                      height={180}
                       loading="eager"
-                      className="w-[220px] h-[220px] md:w-[240px] md:h-[240px] rounded-xl"
+                      className="w-[170px] h-[170px] md:w-[180px] md:h-[180px] rounded-xl"
                     />
                   </div>
                 </div>
