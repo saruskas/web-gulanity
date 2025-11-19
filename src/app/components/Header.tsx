@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useScrolled } from "@/app/hooks/useScrolled";
 import { useFocusTrap } from "@/app/hooks/useFocusTrap";
@@ -9,6 +9,7 @@ import { useFocusTrap } from "@/app/hooks/useFocusTrap";
 export default function Header() {
   const scrolled = useScrolled(2);
   const pathname = usePathname();
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -16,38 +17,39 @@ export default function Header() {
 
   const isRestaurants = pathname === "/restaurants";
   const isUsers = pathname === "/users";
+  const restaurantsNavLinks = [
+    { label: "Inicio", href: "#hero", mode: "anchor" as const },
+    { label: "Qué ganas", href: "#que-ganas", mode: "anchor" as const },
+    { label: "Beneficios", href: "#beneficios", mode: "anchor" as const },
+    { label: "Impacto", href: "#impacto", mode: "anchor" as const },
+    { label: "Cómo funciona", href: "#como-funciona", mode: "anchor" as const },
+    { label: "Lista de espera", href: "#lista-espera", mode: "anchor" as const },
+    { label: "Feedback", href: "#feedback", mode: "anchor" as const },
+    { label: "Blog", href: "/blog", mode: "route" as const },
+  ];
 
-  const navLinks = isRestaurants
-    ? [
-        { label: "Inicio", href: "#hero", mode: "anchor" as const },
-        { label: "Qué ganas", href: "#que-ganas", mode: "anchor" as const },
-        { label: "Beneficios", href: "#beneficios", mode: "anchor" as const },
-        { label: "Impacto", href: "#impacto", mode: "anchor" as const },
-        { label: "Cómo funciona", href: "#como-funciona", mode: "anchor" as const },
-        { label: "Lista de espera", href: "#lista-espera", mode: "anchor" as const },
-        { label: "Feedback", href: "#feedback", mode: "anchor" as const },
-        { label: "Blog", href: "/blog", mode: "route" as const },
-      ]
-    : isUsers
-    ? [
-        { label: "Inicio", href: "#hero", mode: "anchor" as const },
-        { label: "Qué ganas", href: "#que-ganas", mode: "anchor" as const },
-        { label: "Beneficios", href: "#beneficios", mode: "anchor" as const },
-        { label: "Impacto", href: "#impacto", mode: "anchor" as const },
-        { label: "Cómo funciona", href: "#como-funciona", mode: "anchor" as const },
-        { label: "Lista de espera", href: "#lista-espera", mode: "anchor" as const },
-        { label: "Feedback", href: "#feedback", mode: "anchor" as const },
-        { label: "Blog", href: "/blog", mode: "route" as const },
-      ]
-    : [
-        { label: "Inicio", href: "#hero", mode: "anchor" as const },
-        { label: "Qué ganas", href: "#que-ganas", mode: "anchor" as const },
-        { label: "Beneficios", href: "#beneficios", mode: "anchor" as const },
-        { label: "Impacto", href: "#impacto", mode: "anchor" as const },
-        { label: "Cómo funciona", href: "#como-funciona", mode: "anchor" as const },
-        { label: "Lista de espera", href: "#lista-espera", mode: "anchor" as const },
-        { label: "Blog", href: "/blog", mode: "route" as const },
-      ];
+  const usersNavLinks = [
+    { label: "Inicio", href: "#hero", mode: "anchor" as const },
+    { label: "Qué ganas", href: "#que-ganas", mode: "anchor" as const },
+    { label: "Beneficios", href: "#beneficios", mode: "anchor" as const },
+    { label: "Impacto", href: "#impacto", mode: "anchor" as const },
+    { label: "Cómo funciona", href: "#como-funciona", mode: "anchor" as const },
+    { label: "Lista de espera", href: "#lista-espera", mode: "anchor" as const },
+    { label: "Feedback", href: "#feedback", mode: "anchor" as const },
+    { label: "Blog", href: "/blog", mode: "route" as const },
+  ];
+
+  const landingNavLinks = [
+    { label: "Restaurantes", href: "#beneficios", mode: "anchor" as const },
+    { label: "Usuarios", href: "#usuarios", mode: "anchor" as const },
+    { label: "Lista de espera", href: "#lista-espera", mode: "anchor" as const },
+    { label: "Blog", href: "/blog", mode: "route" as const },
+  ];
+
+  const navLinks = isRestaurants ? restaurantsNavLinks : isUsers ? usersNavLinks : landingNavLinks;
+  const logoDimensions = { width: 120, height: 32 };
+  const logoSizes = "(max-width: 640px) 96px, 120px";
+  const logoClass = "h-5 sm:h-6 w-auto";
 
   // Cerrar con clic/touch fuera y con Escape. Además, bloquear scroll cuando el menú está abierto.
   useEffect(() => {
@@ -87,8 +89,20 @@ export default function Header() {
 
   const handleMenuClick = (href: string) => {
     setMenuOpen(false);
+    const isHash = href.startsWith("#");
     setTimeout(() => {
-      window.location.hash = href;
+      if (isHash) {
+        const targetId = href.slice(1);
+        const element = targetId ? document.getElementById(targetId) : null;
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+          window.location.hash = href;
+          return;
+        }
+        router.push(`/${href}`);
+        return;
+      }
+      router.push(href);
     }, 120);
   };
 
@@ -97,8 +111,17 @@ export default function Header() {
       <div className="container-outer h-full">
         <div className="h-full flex items-center justify-between gap-3 py-3">
           {/* Logo compacto */}
-          <Link href={isRestaurants ? "/restaurants" : "/users"} className="flex items-center gap-2" aria-label="Gulanity">
-            <Image src={isUsers ? "/logo_user.png" : "/logo_rest.png"} alt="Gulanity" width={120} height={32} className="h-6 w-auto" priority />
+          <Link href="/" className="flex items-center gap-2" aria-label="Gulanity">
+            <Image
+              src={isUsers ? "/logo_user.png" : "/logo_rest.png"}
+              alt="Gulanity"
+              width={logoDimensions.width}
+              height={logoDimensions.height}
+              quality={100}
+              sizes={logoSizes}
+              className={logoClass}
+              priority
+            />
           </Link>
 
           {/* Derecha: Menú + Toggle */}

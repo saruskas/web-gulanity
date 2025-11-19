@@ -64,7 +64,7 @@ export default function UsersPage() {
       <Header />
       <main>
         <ScrollDepthTracker page="users" />
-        <section id="hero" className="bg-white pt-28 pb-16">
+        <section id="hero" className="hero-full-light flex items-center">
           <div className="container-outer grid md:grid-cols-2 gap-10 items-center">
             <div className="justify-self-start">
               <div className="max-w-xl mx-auto flex flex-col items-center text-center">

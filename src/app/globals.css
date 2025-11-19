@@ -203,6 +203,12 @@ body {
   padding-top: calc(var(--header-h) + 1rem);
   padding-bottom: 2rem;
 }
+.hero-full-light {
+  min-height: 100vh;
+  background: #ffffff;
+  padding-top: calc(var(--header-h) + 1rem);
+  padding-bottom: 2rem;
+}
 
 /* Contenedor global */
 .container-outer {

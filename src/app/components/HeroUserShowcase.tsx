@@ -90,7 +90,7 @@ export default function HeroUserShowcase() {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.5 }}
+        viewport={{ once: true, amount: 0.15 }}
       >
         {/* Mockup de móvil */}
         <div className="relative mx-auto max-w-[280px] rounded-[48px] bg-gradient-to-br from-[#050a14] via-[#070e1d] to-[#02040a] p-3 shadow-[0_50px_120px_rgba(1,4,9,0.85)] ring-1 ring-white/10">

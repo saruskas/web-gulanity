@@ -9,6 +9,10 @@ import ScrollDepthTracker from "./components/ScrollDepthTracker";
 import { HeroShowcaseSkeleton } from "./components/Skeleton";
 import { siteConfig } from "@/lib/config";
 
+const HeroRestaurantsDualShowcase = dynamic(() => import("./components/HeroRestaurantsDualShowcase"), {
+  loading: () => <HeroShowcaseSkeleton variant="dark" />,
+});
+
 const HeroRestaurantsShowcase = dynamic(() => import("./components/HeroRestaurantsShowcase"), {
   loading: () => <HeroShowcaseSkeleton variant="dark" />,
 });
@@ -72,7 +76,7 @@ export default function HomePage() {
       <Header />
       <main>
         <ScrollDepthTracker page="home" />
-        <section id="hero" className="pt-28 pb-20 bg-gradient-to-b from-[#041522] to-[#062f45] text-white">
+        <section id="hero" className="hero-full flex items-center bg-gradient-to-b from-[#041522] to-[#062f45] text-white">
           <div className="container-outer grid gap-10 lg:grid-cols-2 items-center">
             <div>
               <p className="text-xs uppercase tracking-[0.4em] text-white/70 mb-4">Plataforma dual</p>
@@ -83,27 +87,30 @@ export default function HomePage() {
               <HomeHeroCtas />
             </div>
             <div className="relative">
-              <HeroRestaurantsShowcase />
+              <HeroRestaurantsDualShowcase />
             </div>
           </div>
         </section>
 
         <section id="beneficios" className="section-gap bg-white">
-          <div className="container-outer">
-            <div className="max-w-2xl">
+          <div className="container-outer grid gap-10 lg:grid-cols-2 items-center">
+            <div className="order-1 lg:order-1">
+              <HeroRestaurantsShowcase />
+            </div>
+            <div className="order-2 lg:order-2">
               <p className="text-xs uppercase tracking-[0.3em] text-[#052838]/50 mb-3">Restaurantes</p>
               <h2 className="font-display text-3xl md:text-4xl mb-4">Más ocupación sin intermediarios</h2>
-              <p className="text-[#052838]/70">
+              <p className="text-[#052838]/70 mb-6">
                 Gulanity combina cartas vivas, contenido generado por creadores y datos en tiempo real para atraer a los comensales que amarán tu propuesta.
               </p>
-            </div>
-            <div className="grid gap-6 md:grid-cols-3 mt-10">
+              <div className="space-y-4">
               {featureCards.map((card) => (
-                <article key={card.title} className="card-compact shadow-sm hover:shadow-lg transition-shadow">
-                  <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
+                  <article key={card.title} className="bg-gray-50 border border-gray-100 rounded-2xl p-5 shadow-sm">
+                    <h3 className="text-lg font-semibold mb-1 text-[#052838]">{card.title}</h3>
                   <p className="text-sm text-gray-600">{card.description}</p>
                 </article>
               ))}
+              </div>
             </div>
           </div>
         </section>
@@ -146,7 +153,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="descubre" className="section-gap bg-[#041522] text-white">
+        <section id="lista-espera" className="section-gap bg-[#041522] text-white">
           <div className="container-outer grid gap-10 lg:grid-cols-2 items-center">
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-white/50 mb-3">Lista de espera</p>

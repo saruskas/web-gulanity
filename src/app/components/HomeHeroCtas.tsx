@@ -11,14 +11,14 @@ export default function HomeHeroCtas() {
     <div className="flex flex-wrap items-center gap-3">
       <Link
         href="/restaurants"
-        className="btn btn-md btn-gold"
+        className="btn btn-md btn-outline border-white/30 text-white/90 hover:text-white hover:border-white/60"
         onClick={() => handleClick("/restaurants")}
       >
         Soy restaurante
       </Link>
       <Link
         href="/users"
-        className="btn btn-md btn-outline text-[#052838] border-[#052838] hover:bg-[#052838] hover:text-white"
+        className="btn btn-md btn-outline border-white/30 text-white/90 hover:text-white hover:border-white/60"
         onClick={() => handleClick("/users")}
       >
         Soy usuario
