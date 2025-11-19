@@ -78,7 +78,7 @@ export default function UsersPage() {
                     </Link>
                   </div>
                 </div>
-                <h1 className="text-[#052838] font-display mb-4">Descubre platos sin sorpresas con Gulanity</h1>
+                <h1 className="text-[#052838] font-display mb-4">Tu próximo plato favorito está a un tap de distancia</h1>
                 <p className="text-[#052838]/70 leading-relaxed mb-8">
                   Encuentra platos y restaurantes que encajan contigo gracias a recomendaciones reales de tu comunidad.
                 </p>
@@ -162,21 +162,36 @@ export default function UsersPage() {
           </div>
         </section>
 
-        <section className="section-gap bg-gray-50">
-          <div className="container-outer max-w-3xl">
-            <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-10 text-center">
+        <section id="descargar" className="section-gap bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(244,191,0,0.08),transparent_50%)]" />
+          <div className="container-outer max-w-3xl relative z-10">
+            <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-10 text-center shadow-xl">
+              <div className="flex justify-center mb-8">
+                <div className="relative w-[200px] animate-float">
+                  <div className="rounded-[32px] bg-gradient-to-br from-[#050a14] via-[#070e1d] to-[#02040a] p-2 shadow-2xl">
+                    <div className="rounded-[28px] overflow-hidden bg-black">
+                      <img src="/restaurant_mobile.webp" alt="App Gulanity" className="w-full h-auto" loading="lazy" />
+                    </div>
+                  </div>
+                </div>
+              </div>
               <p className="text-xs uppercase tracking-[0.4em] text-[#052838]/50 mb-4">Disponible muy pronto</p>
               <h2 className="text-[#052838] font-display text-3xl md:text-4xl mb-4">Descarga gratis en iOS y Android</h2>
               <p className="text-[#052838]/70 leading-relaxed mb-8">Regístrate para acceder en primicia a la beta y recibir actualizaciones.</p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Link href={siteConfig.platforms.appStore} target="_blank" rel="noopener noreferrer" className="btn btn-md btn-yellow min-w-[200px] text-center">
+                <Link
+                  href={siteConfig.platforms.appStore}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-md btn-yellow min-w-[200px] text-center hover:scale-105 transition-transform"
+                >
                   App Store
                 </Link>
                 <Link
                   href={siteConfig.platforms.playStore}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-md border border-[#052838]/20 bg-white text-[#052838] hover:bg-gray-50 min-w-[200px] text-center"
+                  className="btn btn-md border border-[#052838]/20 bg-white text-[#052838] hover:bg-gray-50 hover:scale-105 min-w-[200px] text-center transition-transform"
                 >
                   Google Play
                 </Link>

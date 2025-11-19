@@ -38,23 +38,23 @@ const highlightCards: HeroCard[] = [
 const STEP_DURATION_MS = 2000;
 const stageTimeline = [
   {
-    image: "/dashboardMetrics.jpg",
+    image: "/assets/restaurants/Dashboard_Platform.PNG",
     focusCardId: "reservas",
   },
   {
-    image: "/assets/restauran_background.jpeg",
+    image: "/assets/restaurants/Menu.PNG",
     focusCardId: "insights",
   },
   {
-    image: "/dashboardMetrics.jpg",
+    image: "/assets/restaurants/Dishes.PNG",
     focusCardId: "experiencias",
   },
 ];
 
 const positionStyles = {
-  "overlay-top": "absolute -left-16 top-10 w-[280px]",
-  "overlay-mid": "absolute -left-32 top-64 w-[280px]",
-  "outer-bottom": "absolute -left-6 bottom-6 w-[240px]",
+  "overlay-top": "absolute -right-20 top-8 w-[280px]",
+  "overlay-mid": "absolute -right-24 top-1/2 -translate-y-1/2 w-[280px]",
+  "outer-bottom": "absolute -right-16 bottom-8 w-[240px]",
 };
 
 const cardStyles = {
@@ -95,7 +95,7 @@ export default function HeroRestaurantsShowcase() {
         <div className="relative rounded-[40px] bg-gradient-to-br from-[#050a14] via-[#070e1d] to-[#02040a] p-4 shadow-[0_50px_120px_rgba(1,4,9,0.85)] ring-1 ring-white/10 w-full">
           <div className="absolute top-5 left-1/2 h-1.5 w-28 -translate-x-1/2 rounded-full bg-white/20" />
           <div className="relative mt-6 rounded-[30px] overflow-hidden bg-black">
-            <div className="relative aspect-[16/9]">
+            <div className="relative aspect-[2/1]">
               <Image
                 src={currentStage.image}
                 alt="Métricas del dashboard de Gulanity"

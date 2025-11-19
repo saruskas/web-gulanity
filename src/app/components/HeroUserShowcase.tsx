@@ -38,15 +38,15 @@ const highlightCards: HeroCard[] = [
 const STEP_DURATION_MS = 2000;
 const stageTimeline = [
   {
-    image: "/restaurant_mobile.png",
+    image: "/restaurant_mobile.webp",
     focusCardId: "match",
   },
   {
-    image: "/restaurant_details.png",
+    image: "/restaurant_details.webp",
     focusCardId: "recomendaciones",
   },
   {
-    image: "/dish_details.png",
+    image: "/dish_details.webp",
     focusCardId: "reservas",
   },
 ];
@@ -92,8 +92,8 @@ export default function HeroUserShowcase() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.15 }}
       >
-        {/* Mockup de móvil */}
-        <div className="relative mx-auto max-w-[280px] rounded-[48px] bg-gradient-to-br from-[#050a14] via-[#070e1d] to-[#02040a] p-3 shadow-[0_50px_120px_rgba(1,4,9,0.85)] ring-1 ring-white/10">
+        {/* Mockup de móvil con efecto float */}
+        <div className="relative mx-auto max-w-[280px] rounded-[48px] bg-gradient-to-br from-[#050a14] via-[#070e1d] to-[#02040a] p-3 shadow-[0_60px_140px_rgba(1,4,9,0.4)] ring-1 ring-white/10 animate-float">
           {/* Notch superior */}
           <div className="absolute top-5 left-1/2 h-5 w-20 -translate-x-1/2 rounded-full bg-black z-10" />
 
@@ -105,7 +105,7 @@ export default function HeroUserShowcase() {
                 alt="App de Gulanity para usuarios"
                 fill
                 priority
-                className="object-cover"
+                className="object-cover transition-opacity duration-500"
                 sizes="(min-width: 1024px) 280px, 100vw"
               />
             </div>
@@ -127,11 +127,11 @@ export default function HeroUserShowcase() {
               }}
               transition={{ duration: 0.65, ease: "easeOut" }}
             >
-              <div
-                className={`rounded-2xl border px-4 py-4 transition-all duration-500 ${cardStyles[card.variant]} ${
-                  isFocused ? "ring-2 ring-[#F4BF00]/70 shadow-[0_35px_80px_rgba(5,20,46,0.18)]" : ""
-                }`}
-              >
+          <div
+            className={`rounded-2xl border px-4 py-4 transition-all duration-500 ${cardStyles[card.variant]} ${
+              isFocused ? "ring-2 ring-[#F4BF00]/70 shadow-[0_35px_80px_rgba(5,20,46,0.18)] animate-pulse-border" : ""
+            }`}
+          >
                 <p className="text-sm font-semibold">{card.title}</p>
                 <p className="text-xs text-[#052838]/80">{card.desc}</p>
               </div>

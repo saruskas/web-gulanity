@@ -20,8 +20,6 @@ export default function Header() {
   const restaurantsNavLinks = [
     { label: "Inicio", href: "#hero", mode: "anchor" as const },
     { label: "Qué ganas", href: "#que-ganas", mode: "anchor" as const },
-    { label: "Beneficios", href: "#beneficios", mode: "anchor" as const },
-    { label: "Impacto", href: "#impacto", mode: "anchor" as const },
     { label: "Cómo funciona", href: "#como-funciona", mode: "anchor" as const },
     { label: "Lista de espera", href: "#lista-espera", mode: "anchor" as const },
     { label: "Feedback", href: "#feedback", mode: "anchor" as const },
@@ -31,11 +29,9 @@ export default function Header() {
   const usersNavLinks = [
     { label: "Inicio", href: "#hero", mode: "anchor" as const },
     { label: "Qué ganas", href: "#que-ganas", mode: "anchor" as const },
-    { label: "Beneficios", href: "#beneficios", mode: "anchor" as const },
-    { label: "Impacto", href: "#impacto", mode: "anchor" as const },
     { label: "Cómo funciona", href: "#como-funciona", mode: "anchor" as const },
-    { label: "Lista de espera", href: "#lista-espera", mode: "anchor" as const },
-    { label: "Feedback", href: "#feedback", mode: "anchor" as const },
+    { label: "Descargar", href: "#descargar", mode: "anchor" as const },
+    { label: "Ayúdanos a mejorar", href: "#feedback", mode: "anchor" as const },
     { label: "Blog", href: "/blog", mode: "route" as const },
   ];
 
@@ -47,9 +43,9 @@ export default function Header() {
   ];
 
   const navLinks = isRestaurants ? restaurantsNavLinks : isUsers ? usersNavLinks : landingNavLinks;
-  const logoDimensions = { width: 120, height: 32 };
-  const logoSizes = "(max-width: 640px) 96px, 120px";
-  const logoClass = "h-5 sm:h-6 w-auto";
+  const logoDimensions = { width: 194, height: 30 };
+  const logoSizes = "(max-width: 640px) 155px, 194px";
+  const logoClass = "h-[30px] w-auto object-contain";
 
   // Cerrar con clic/touch fuera y con Escape. Además, bloquear scroll cuando el menú está abierto.
   useEffect(() => {
@@ -121,6 +117,7 @@ export default function Header() {
               sizes={logoSizes}
               className={logoClass}
               priority
+              style={{ objectFit: "contain" }}
             />
           </Link>
 

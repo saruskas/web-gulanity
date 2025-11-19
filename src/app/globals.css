@@ -249,3 +249,39 @@ body {
   background: #F4BF00;
   color: #052838;
 }
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulse-border {
+  0%, 100% {
+    border-color: rgba(244, 191, 0, 0.4);
+  }
+  50% {
+    border-color: rgba(244, 191, 0, 0.8);
+  }
+}
+.animate-pulse-border {
+  animation: pulse-border 2s ease-in-out infinite;
+}
+
+@keyframes breathing {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+.animate-breathing {
+  animation: breathing 6s ease-in-out infinite;
+}

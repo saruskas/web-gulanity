@@ -80,7 +80,7 @@ export default function HomePage() {
           <div className="container-outer grid gap-10 lg:grid-cols-2 items-center">
             <div>
               <p className="text-xs uppercase tracking-[0.4em] text-white/70 mb-4">Plataforma dual</p>
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6">Descubre dónde ir y crece sin comisiones</h1>
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6">Encuentra tu plato perfecto. Llena tu restaurante sin comisiones.</h1>
               <p className="text-white/80 mb-8">
                 Foodies encuentran platos reales con la ayuda de su comunidad. Restaurantes llenan mesa con clientes que llegan listos para decidir. Gulanity alinea expectativas y experiencias.
               </p>
@@ -92,10 +92,13 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="beneficios" className="section-gap bg-white">
-          <div className="container-outer grid gap-10 lg:grid-cols-2 items-center">
+        <section id="beneficios" className="section-gap bg-gradient-to-br from-white via-gray-50 to-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(212,191,166,0.1),transparent_60%)]" />
+          <div className="container-outer grid gap-10 lg:grid-cols-2 items-center relative z-10">
             <div className="order-1 lg:order-1">
-              <HeroRestaurantsShowcase />
+              <div className="transform transition-transform duration-700 hover:scale-[1.02]">
+                <HeroRestaurantsShowcase />
+              </div>
             </div>
             <div className="order-2 lg:order-2">
               <p className="text-xs uppercase tracking-[0.3em] text-[#052838]/50 mb-3">Restaurantes</p>
@@ -104,19 +107,24 @@ export default function HomePage() {
                 Gulanity combina cartas vivas, contenido generado por creadores y datos en tiempo real para atraer a los comensales que amarán tu propuesta.
               </p>
               <div className="space-y-4">
-              {featureCards.map((card) => (
-                  <article key={card.title} className="bg-gray-50 border border-gray-100 rounded-2xl p-5 shadow-sm">
+                {featureCards.map((card, index) => (
+                  <article
+                    key={card.title}
+                    className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
                     <h3 className="text-lg font-semibold mb-1 text-[#052838]">{card.title}</h3>
-                  <p className="text-sm text-gray-600">{card.description}</p>
-                </article>
-              ))}
+                    <p className="text-sm text-gray-600">{card.description}</p>
+                  </article>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        <section id="usuarios" className="section-gap bg-gray-50">
-          <div className="container-outer grid gap-10 lg:grid-cols-2 items-center">
+        <section id="usuarios" className="section-gap bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(244,191,0,0.08),transparent_60%)]" />
+          <div className="container-outer grid gap-10 lg:grid-cols-2 items-center relative z-10">
             <div className="order-2 lg:order-1">
               <p className="text-xs uppercase tracking-[0.3em] text-[#052838]/50 mb-3">Usuarios</p>
               <h2 className="font-display text-3xl md:text-4xl mb-4">Platos que coinciden contigo</h2>
@@ -124,8 +132,12 @@ export default function HomePage() {
                 Explora cartas ricas en contexto, con ingredientes, alérgenos y reseñas de personas en las que confías. Así eliges mejor y recomiendas con seguridad.
               </p>
               <div className="space-y-4">
-                {userHighlights.map((point) => (
-                  <div key={point.title} className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm">
+                {userHighlights.map((point, index) => (
+                  <div
+                    key={point.title}
+                    className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
                     <h3 className="font-semibold mb-1">{point.title}</h3>
                     <p className="text-sm text-gray-600">{point.description}</p>
                   </div>
@@ -133,7 +145,9 @@ export default function HomePage() {
               </div>
             </div>
             <div className="order-1 lg:order-2">
-              <HeroUserShowcase />
+              <div className="animate-breathing">
+                <HeroUserShowcase />
+              </div>
             </div>
           </div>
         </section>

@@ -64,9 +64,9 @@ export default function RestaurantsPage() {
         <ScrollDepthTracker page="restaurants" />
         <section id="hero" className="hero-full flex items-center">
           <div className="container-outer w-full py-10 md:py-12">
-            <div className="grid md:grid-cols-2 gap-10 items-center">
-              <div className="justify-self-start">
-                <div className="max-w-xl mx-auto flex flex-col items-center text-center">
+            <div className="grid md:grid-cols-[1fr_1.2fr] gap-10 items-center">
+              <div className="justify-self-start max-w-xl">
+                <div className="flex flex-col items-start text-left">
                   <div className="mb-6">
                     <div className="inline-flex rounded-full p-1 bg-white/5 border border-white/10">
                       <Link href="/restaurants" className="px-5 py-2 bg-[#D4BFA6] text-[#052838] rounded-full text-xs font-semibold transition-all">
@@ -77,14 +77,14 @@ export default function RestaurantsPage() {
                       </Link>
                     </div>
                   </div>
-                  <h1 className="text-white font-display mb-4">Crece sin comisiones con Gulanity</h1>
+                  <h1 className="text-white font-display mb-4">Más clientes. Cero comisiones. Total control.</h1>
                   <p className="text-white/70 leading-relaxed mb-8">
                     Gulanity conecta restaurantes y foodies para que lo que esperas sea exactamente lo que encuentras.
                   </p>
                   <RestaurantsHeroActions />
                 </div>
               </div>
-              <div className="relative w-full max-w-md md:max-w-none mx-auto">
+              <div className="relative w-full justify-self-end">
                 <HeroRestaurantsShowcase />
               </div>
             </div>
