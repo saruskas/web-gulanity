@@ -36,8 +36,10 @@ export default function Header() {
   ];
 
   const landingNavLinks = [
-    { label: "Restaurantes", href: "#beneficios", mode: "anchor" as const },
-    { label: "Usuarios", href: "#usuarios", mode: "anchor" as const },
+    { label: "Hero", href: "#hero", mode: "anchor" as const },
+    { label: "Selector", href: "#audiencias", mode: "anchor" as const },
+    { label: "Arquitectura", href: "#detalles", mode: "anchor" as const },
+    { label: "Timeline", href: "#flujo", mode: "anchor" as const },
     { label: "Lista de espera", href: "#lista-espera", mode: "anchor" as const },
     { label: "Blog", href: "/blog", mode: "route" as const },
   ];
