@@ -41,7 +41,7 @@ export default function RestaurantsPage() {
       <Header />
       <main>
         <ScrollDepthTracker page="restaurants" />
-        <section id="hero" className="hero-full flex items-center">
+        <section id="hero" className="hero-full flex items-center bg-gradient-to-b from-[#052838] to-[#001f32] text-white">
           <div className="container-outer w-full py-10 md:py-12">
             <div className="grid md:grid-cols-[1fr_1.2fr] gap-10 items-center">
               <div className="justify-self-start max-w-xl">

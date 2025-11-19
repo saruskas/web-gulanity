@@ -202,13 +202,13 @@ body {
 /* Hero a viewport REAL (ocupa toda la pantalla visible) */
 .hero-full {
   min-height: 100vh;
-  background: #052838;
+  background-color: transparent;
   padding-top: calc(var(--header-h) + 1rem);
   padding-bottom: 2rem;
 }
 .hero-full-light {
   min-height: 100vh;
-  background: #ffffff;
+  background-color: #ffffff;
   padding-top: calc(var(--header-h) + 1rem);
   padding-bottom: 2rem;
 }
