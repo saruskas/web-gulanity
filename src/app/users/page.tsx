@@ -1,36 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollDepthTracker from "../components/ScrollDepthTracker";
-import { HeroShowcaseSkeleton, ContentSectionSkeleton } from "../components/Skeleton";
 import UsersHeroActions from "./UsersHeroActions";
 import UsersDownloadCard from "./UsersDownloadCard";
 import DownloadSection from "./DownloadSection";
+import HeroUserShowcase from "../components/HeroUserShowcase";
+import UsersClient from "./UsersClient";
 import { CheckCircle2, Heart, Sparkles, Shield, Star } from "lucide-react";
 import { siteConfig } from "@/lib/config";
-
-const HeroUserShowcase = dynamic(() => import("../components/HeroUserShowcase"), {
-  loading: () => <HeroShowcaseSkeleton />,
-});
-
-const UsersClient = dynamic(() => import("./UsersClient"), {
-  loading: () => (
-    <>
-      <section className="section-gap bg-white">
-        <div className="container-outer max-w-4xl">
-          <ContentSectionSkeleton />
-        </div>
-      </section>
-      <section className="section-gap bg-gray-100">
-        <div className="container-outer max-w-4xl">
-          <ContentSectionSkeleton />
-        </div>
-      </section>
-    </>
-  ),
-});
 
 export const metadata: Metadata = {
   title: "Usuarios - Gulanity | Descubre platos sin sorpresas",

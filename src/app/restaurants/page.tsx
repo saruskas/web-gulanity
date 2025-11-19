@@ -1,33 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollDepthTracker from "../components/ScrollDepthTracker";
-import { HeroShowcaseSkeleton, ContentSectionSkeleton } from "../components/Skeleton";
 import RestaurantsHeroActions from "./RestaurantsHeroActions";
+import HeroRestaurantsShowcase from "../components/HeroRestaurantsShowcase";
+import RestaurantsClient from "./RestaurantsClient";
 import { CheckCircle2, TrendingUp, Users, BarChart3, Zap } from "lucide-react";
-
-const HeroRestaurantsShowcase = dynamic(() => import("../components/HeroRestaurantsShowcase"), {
-  loading: () => <HeroShowcaseSkeleton variant="dark" />,
-});
-
-const RestaurantsClient = dynamic(() => import("./RestaurantsClient"), {
-  loading: () => (
-    <>
-      <section className="section-gap bg-white">
-        <div className="container-outer max-w-2xl">
-          <ContentSectionSkeleton />
-        </div>
-      </section>
-      <section className="section-gap bg-gray-50">
-        <div className="container-outer max-w-2xl">
-          <ContentSectionSkeleton />
-        </div>
-      </section>
-    </>
-  ),
-});
 
 export const metadata: Metadata = {
   title: "Restaurantes - Gulanity | Crece sin comisiones",

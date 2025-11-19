@@ -1,44 +1,23 @@
 "use client";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const STEP_DURATION_MS = 2000;
 
-type ShowcaseStage = {
-  image: string;
-  focusCardId: string;
-  preload: boolean;
-};
-
-const stageTimeline: ShowcaseStage[] = [
+const stageTimeline = [
   {
     image: "/assets/restaurants/Dashboard_Platform.PNG",
     focusCardId: "reservas",
-    preload: true,
   },
   {
     image: "/assets/restaurants/Menu.PNG",
     focusCardId: "insights",
-    preload: false,
   },
   {
     image: "/assets/restaurants/Dishes.PNG",
     focusCardId: "experiencias",
-    preload: false,
   },
 ];
-
-if (typeof window !== "undefined") {
-  if (!document.head.querySelector('link[data-preload="hero-restaurants-desktop"]')) {
-    const preloadLink = document.createElement("link");
-    preloadLink.rel = "preload";
-    preloadLink.as = "image";
-    preloadLink.href = "/assets/restaurants/Dashboard_Platform.PNG";
-    preloadLink.dataset.preload = "hero-restaurants-desktop";
-    document.head.appendChild(preloadLink);
-  }
-}
 
 export default function HeroRestaurantsShowcase() {
   const [stage, setStage] = useState(0);
@@ -53,13 +32,7 @@ export default function HeroRestaurantsShowcase() {
 
   return (
     <div className="relative w-full flex justify-center lg:mt-0 lg:mb-0">
-      <motion.div
-        className="relative mx-auto w-full max-w-[720px] lg:min-h-[560px]"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.15 }}
-      >
+      <div className="relative mx-auto w-full max-w-[720px] lg:min-h-[560px]">
         <div className="relative rounded-[40px] bg-gradient-to-br from-[#050a14] via-[#070e1d] to-[#02040a] p-4 shadow-[0_50px_120px_rgba(1,4,9,0.85)] ring-1 ring-white/10 w-full">
           <div className="absolute top-5 left-1/2 h-1.5 w-28 -translate-x-1/2 rounded-full bg-white/20" />
           <div className="relative mt-6 rounded-[30px] overflow-hidden bg-black">
@@ -68,8 +41,7 @@ export default function HeroRestaurantsShowcase() {
                 src={currentStage.image}
                 alt="Dashboard de Gulanity para restaurantes"
                 fill
-                priority={false}
-                loading={currentStage.preload ? "eager" : "lazy"}
+                loading="eager"
                 className="object-cover"
                 sizes="(min-width: 1024px) 720px, 100vw"
               />
@@ -78,7 +50,7 @@ export default function HeroRestaurantsShowcase() {
           <div className="mx-auto mt-8 h-24 w-8 rounded-full bg-[#040812] shadow-[0_25px_60px_rgba(0,0,0,0.55)]" />
           <div className="mx-auto mt-3 h-5 w-60 rounded-full bg-black/70 blur-sm opacity-70" />
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

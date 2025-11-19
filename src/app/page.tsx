@@ -1,25 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomeHeroCtas from "./components/HomeHeroCtas";
 import HomeWaitlistForm from "./components/HomeWaitlistForm";
 import ScrollDepthTracker from "./components/ScrollDepthTracker";
-import { HeroShowcaseSkeleton } from "./components/Skeleton";
+import HeroRestaurantsDualShowcase from "./components/HeroRestaurantsDualShowcase";
+import HeroRestaurantsShowcase from "./components/HeroRestaurantsShowcase";
+import HeroUserShowcase from "./components/HeroUserShowcase";
 import { siteConfig } from "@/lib/config";
-
-const HeroRestaurantsDualShowcase = dynamic(() => import("./components/HeroRestaurantsDualShowcase"), {
-  loading: () => <HeroShowcaseSkeleton variant="dark" />,
-});
-
-const HeroRestaurantsShowcase = dynamic(() => import("./components/HeroRestaurantsShowcase"), {
-  loading: () => <HeroShowcaseSkeleton variant="dark" />,
-});
-
-const HeroUserShowcase = dynamic(() => import("./components/HeroUserShowcase"), {
-  loading: () => <HeroShowcaseSkeleton />,
-});
 
 export const metadata: Metadata = {
   title: "Gulanity | Descubre dónde ir y crece sin comisiones",
