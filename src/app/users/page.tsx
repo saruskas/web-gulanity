@@ -131,7 +131,7 @@ export default function UsersPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {steps.map((step) => (
                 <article key={step.num} className="border border-gray-100 rounded-2xl p-6 shadow-sm">
-                  <div className="bg-[#FCDB7D] text-[#052838] w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-lg mb-4">
+                  <div className="bg-[#F4BF00] text-[#052838] w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-lg mb-4">
                     {step.num}
                   </div>
                   <h3 className="text-[#052838] mb-2">{step.title}</h3>

@@ -23,7 +23,7 @@ export default function BackToTop() {
   const pathname = usePathname();
   const isRestaurants = pathname === '/restaurants';
   const isUsers = pathname === '/users';
-  const brandColor = isRestaurants ? '#D4BFA6' : isUsers ? '#F4BF00' : '#FCDB7D';
+  const brandColor = isRestaurants ? '#D4BFA6' : isUsers ? '#F4BF00' : '#EAE8E0';
   const brandText = '#052838';
 
   useEffect(() => {

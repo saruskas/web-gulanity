@@ -164,7 +164,7 @@ export default function BlogPost() {
               mejorar su servicio para futuros clientes con necesidades similares.
             </p>
 
-            <div className="bg-[#FCDB7D] bg-opacity-20 border-l-4 border-[#FCDB7D] p-6 my-8">
+            <div className="bg-[#F4BF00] bg-opacity-20 border-l-4 border-[#F4BF00] p-6 my-8">
               <h3 className="text-lg font-semibold text-[#052838] mb-2">💡 Consejo Pro</h3>
               <p className="text-gray-700">
                 Mantén una lista en tu teléfono con tus restricciones dietéticas y alergias. 

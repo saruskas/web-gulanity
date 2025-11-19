@@ -49,10 +49,10 @@ export default function UsersClient() {
                 required
               />
             </div>
-            <button
-              type="submit"
-              className="w-full sm:w-auto bg-[#FCDB7D] hover:bg-[#052838] hover:text-[#FCDB7D] text-white font-medium py-4 px-8 rounded-lg transition duration-200"
-            >
+              <button
+                type="submit"
+                className="w-full sm:w-auto bg-[#F4BF00] hover:bg-[#052838] hover:text-[#F4BF00] text-white font-medium py-4 px-8 rounded-lg transition duration-200"
+              >
               Enviar feedback
             </button>
           </form>

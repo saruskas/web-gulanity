@@ -34,6 +34,9 @@ body {
     --brand-navy: #052838;
     --brand-gold: #F4BF00;
     --brand-beige: #D4BFA6;
+    --brand-sand: #EAE8E0;
+    --brand-light: #FFF3CD;
+    --brand-dark-blue: #003F5C;
 
     /* Semantic tokens - dark mode (hero) */
     --background: #052838;
@@ -248,6 +251,7 @@ body {
 .btn-yellow {
   background: #F4BF00;
   color: #052838;
+  font-weight: 600;
 }
 
 @keyframes float {
