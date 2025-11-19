@@ -79,7 +79,7 @@ export default function RestaurantsPage() {
                   </div>
                   <h1 className="text-white font-display mb-4">Más clientes. Cero comisiones. Total control.</h1>
                   <p className="text-white/70 leading-relaxed mb-8">
-                    Gulanity conecta restaurantes y foodies para que lo que esperas sea exactamente lo que encuentras.
+                    Gulanity conecta restaurantes y foodies para que lo que esperan sea exactamente lo que encuentran.
                   </p>
                   <RestaurantsHeroActions />
                 </div>
@@ -157,20 +157,6 @@ export default function RestaurantsPage() {
                   <p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p>
                 </article>
               ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section-gap bg-gray-50">
-          <div className="container-outer max-w-3xl">
-            <div className="bg-gray-50 border border-gray-200 rounded-3xl p-6 md:p-10">
-              <p className="text-xl md:text-2xl font-display text-[#052838] mb-5 leading-relaxed">
-                “Gulanity nos trae clientes que vienen a lo seguro. Se nota en caja.”
-              </p>
-              <div>
-                <p className="text-[#D4BFA6] font-semibold text-sm">Marta</p>
-                <p className="text-gray-500 text-xs">Propietaria</p>
-              </div>
             </div>
           </div>
         </section>

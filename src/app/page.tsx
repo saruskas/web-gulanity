@@ -80,7 +80,7 @@ export default function HomePage() {
           <div className="container-outer grid gap-10 lg:grid-cols-2 items-center">
             <div>
               <p className="text-xs uppercase tracking-[0.4em] text-white/70 mb-4">Plataforma dual</p>
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6">Encuentra tu plato perfecto. Llena tu restaurante sin comisiones.</h1>
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6">Encuentra tu plato perfecto. Llena tu restaurante y cumple expectativas.</h1>
               <p className="text-white/80 mb-8">
                 Foodies encuentran platos reales con la ayuda de su comunidad. Restaurantes llenan mesa con clientes que llegan listos para decidir. Gulanity alinea expectativas y experiencias.
               </p>
@@ -92,60 +92,60 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="beneficios" className="section-gap bg-gradient-to-br from-white via-gray-50 to-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(212,191,166,0.1),transparent_60%)]" />
-          <div className="container-outer grid gap-10 lg:grid-cols-2 items-center relative z-10">
-            <div className="order-1 lg:order-1">
-              <div className="transform transition-transform duration-700 hover:scale-[1.02]">
-                <HeroRestaurantsShowcase />
+        <section id="beneficios" className="section-gap bg-gradient-to-br from-white via-gray-50/50 to-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(212,191,166,0.08),transparent_60%)]" aria-hidden="true" />
+          <div className="container-outer relative z-10">
+            <div className="grid gap-16 lg:grid-cols-[1fr_1.1fr] items-center">
+              <div className="order-1 lg:order-1">
+                <div className="transform transition-transform duration-500 hover:scale-[1.02] will-change-transform">
+                  <HeroRestaurantsShowcase />
+                </div>
               </div>
-            </div>
-            <div className="order-2 lg:order-2">
-              <p className="text-xs uppercase tracking-[0.3em] text-[#052838]/50 mb-3">Restaurantes</p>
-              <h2 className="font-display text-3xl md:text-4xl mb-4">Más ocupación sin intermediarios</h2>
-              <p className="text-[#052838]/70 mb-6">
-                Gulanity combina cartas vivas, contenido generado por creadores y datos en tiempo real para atraer a los comensales que amarán tu propuesta.
-              </p>
-              <div className="space-y-4">
-                {featureCards.map((card, index) => (
-                  <article
-                    key={card.title}
-                    className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
-                    <h3 className="text-lg font-semibold mb-1 text-[#052838]">{card.title}</h3>
-                    <p className="text-sm text-gray-600">{card.description}</p>
-                  </article>
-                ))}
+              <div className="order-2 lg:order-2 lg:pl-8">
+                <p className="text-xs uppercase tracking-[0.3em] text-[#052838]/50 mb-3">Restaurantes</p>
+                <h2 className="font-display text-3xl md:text-4xl mb-4">Más ocupación sin intermediarios</h2>
+                <p className="text-[#052838]/70 mb-8 leading-relaxed">
+                  Gulanity combina cartas vivas, contenido generado por creadores y datos en tiempo real para atraer a los comensales que amarán tu propuesta.
+                </p>
+                <div className="space-y-4">
+                  {featureCards.map((card) => (
+                    <article
+                      key={card.title}
+                      className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-[#D4BFA6]/30 hover:-translate-y-1 transition-all duration-300 group"
+                    >
+                      <h3 className="text-lg font-semibold mb-1 text-[#052838] group-hover:text-[#D4BFA6] transition-colors">{card.title}</h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">{card.description}</p>
+                    </article>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         <section id="usuarios" className="section-gap bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(244,191,0,0.08),transparent_60%)]" />
-          <div className="container-outer grid gap-10 lg:grid-cols-2 items-center relative z-10">
-            <div className="order-2 lg:order-1">
-              <p className="text-xs uppercase tracking-[0.3em] text-[#052838]/50 mb-3">Usuarios</p>
-              <h2 className="font-display text-3xl md:text-4xl mb-4">Platos que coinciden contigo</h2>
-              <p className="text-[#052838]/70 mb-6">
-                Explora cartas ricas en contexto, con ingredientes, alérgenos y reseñas de personas en las que confías. Así eliges mejor y recomiendas con seguridad.
-              </p>
-              <div className="space-y-4">
-                {userHighlights.map((point, index) => (
-                  <div
-                    key={point.title}
-                    className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
-                    <h3 className="font-semibold mb-1">{point.title}</h3>
-                    <p className="text-sm text-gray-600">{point.description}</p>
-                  </div>
-                ))}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(244,191,0,0.06),transparent_60%)]" aria-hidden="true" />
+          <div className="container-outer relative z-10">
+            <div className="grid gap-16 lg:grid-cols-2 items-center">
+              <div className="order-2 lg:order-1">
+                <p className="text-xs uppercase tracking-[0.3em] text-[#052838]/50 mb-3">Usuarios</p>
+                <h2 className="font-display text-3xl md:text-4xl mb-4">Platos que coinciden contigo</h2>
+                <p className="text-[#052838]/70 mb-8 leading-relaxed">
+                  Explora cartas ricas en contexto, con ingredientes, alérgenos y reseñas de personas en las que confías. Así eliges mejor y recomiendas con seguridad.
+                </p>
+                <div className="space-y-4">
+                  {userHighlights.map((point) => (
+                    <div
+                      key={point.title}
+                      className="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm hover:shadow-xl hover:border-[#F4BF00]/30 hover:-translate-y-1 transition-all duration-300 group"
+                    >
+                      <h3 className="font-semibold mb-1 text-[#052838] group-hover:text-[#F4BF00] transition-colors">{point.title}</h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">{point.description}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className="order-1 lg:order-2">
-              <div className="animate-breathing">
+              <div className="order-1 lg:order-2">
                 <HeroUserShowcase />
               </div>
             </div>

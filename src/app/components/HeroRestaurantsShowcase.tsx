@@ -3,38 +3,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-type HeroCard = {
-  id: string;
-  title: string;
-  desc: string;
-  variant: "light" | "brand";
-  position: "overlay-top" | "overlay-mid" | "outer-bottom";
-};
-
-const highlightCards: HeroCard[] = [
-  {
-    id: "reservas",
-    title: "Reservas verificadas",
-    desc: "Foodies que ya conocen tu propuesta y llegan listos para decidir.",
-    variant: "light",
-    position: "overlay-top",
-  },
-  {
-    id: "insights",
-    title: "Insights accionables",
-    desc: "Prioriza platos estrella con datos en tiempo real.",
-    variant: "brand",
-    position: "overlay-mid",
-  },
-  {
-    id: "experiencias",
-    title: "Experiencias memorables",
-    desc: "Activa campañas con creadores que aman tu cocina.",
-    variant: "light",
-    position: "outer-bottom",
-  },
-];
-
 const STEP_DURATION_MS = 2000;
 const stageTimeline = [
   {
@@ -51,24 +19,9 @@ const stageTimeline = [
   },
 ];
 
-const positionStyles = {
-  "overlay-top": "absolute -right-20 top-8 w-[280px]",
-  "overlay-mid": "absolute -right-24 top-1/2 -translate-y-1/2 w-[280px]",
-  "outer-bottom": "absolute -right-16 bottom-8 w-[240px]",
-};
-
-const cardStyles = {
-  light:
-    "bg-white text-[#052838] border-white/60 shadow-[0_25px_70px_rgba(5,20,46,0.08)]",
-  brand:
-    "bg-[#D4BFA6] text-[#052838] border-[#c8ab8d]/60 shadow-[0_25px_70px_rgba(9,9,9,0.18)]",
-};
-
 export default function HeroRestaurantsShowcase() {
   const [stage, setStage] = useState(0);
-  const [introComplete, setIntroComplete] = useState(false);
   const currentStage = stageTimeline[stage];
-  const visibleCount = introComplete ? highlightCards.length : Math.min(stage + 1, highlightCards.length);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -76,12 +29,6 @@ export default function HeroRestaurantsShowcase() {
     }, STEP_DURATION_MS);
     return () => window.clearInterval(timer);
   }, []);
-
-  useEffect(() => {
-    if (!introComplete && stage === stageTimeline.length - 1) {
-      setIntroComplete(true);
-    }
-  }, [stage, introComplete]);
 
   return (
     <div className="relative w-full flex justify-center lg:mt-0 lg:mb-0">
@@ -109,50 +56,7 @@ export default function HeroRestaurantsShowcase() {
           <div className="mx-auto mt-8 h-24 w-8 rounded-full bg-[#040812] shadow-[0_25px_60px_rgba(0,0,0,0.55)]" />
           <div className="mx-auto mt-3 h-5 w-60 rounded-full bg-black/70 blur-sm opacity-70" />
         </div>
-
-        {highlightCards.slice(0, visibleCount).map((card) => {
-          const isFocused = currentStage.focusCardId === card.id;
-          return (
-            <motion.div
-              key={card.id}
-              className={`${positionStyles[card.position]} hidden lg:block`}
-              initial={{ opacity: 0, y: 24, scale: 0.96 }}
-              animate={{
-                opacity: 1,
-                y: isFocused ? -12 : 0,
-                scale: isFocused ? 1.04 : 1,
-              }}
-              transition={{ duration: 0.65, ease: "easeOut" }}
-            >
-              <div
-                className={`rounded-2xl border px-4 py-4 transition-all duration-500 ${cardStyles[card.variant]} ${
-                  isFocused ? "ring-2 ring-[#D4BFA6]/70 shadow-[0_35px_80px_rgba(5,20,46,0.18)]" : ""
-                }`}
-              >
-                <p className="text-sm font-semibold">{card.title}</p>
-                <p className="text-xs text-[#052838]/80">{card.desc}</p>
-              </div>
-            </motion.div>
-          );
-        })}
       </motion.div>
-
-      <div className="mt-6 grid gap-4 lg:hidden">
-        {highlightCards.slice(0, visibleCount).map((card) => {
-          const isFocused = currentStage.focusCardId === card.id;
-          return (
-            <div
-              key={`${card.id}-mobile`}
-              className={`rounded-2xl border px-4 py-4 ${cardStyles[card.variant]} ${
-                isFocused ? "ring-2 ring-[#D4BFA6]/60" : ""
-              }`}
-            >
-              <p className="text-sm font-semibold">{card.title}</p>
-              <p className="text-xs text-[#052838]/80">{card.desc}</p>
-            </div>
-          );
-        })}
-      </div>
     </div>
   );
 }
