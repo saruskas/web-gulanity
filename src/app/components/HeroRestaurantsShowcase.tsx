@@ -4,20 +4,41 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const STEP_DURATION_MS = 2000;
-const stageTimeline = [
+
+type ShowcaseStage = {
+  image: string;
+  focusCardId: string;
+  preload: boolean;
+};
+
+const stageTimeline: ShowcaseStage[] = [
   {
     image: "/assets/restaurants/Dashboard_Platform.PNG",
     focusCardId: "reservas",
+    preload: true,
   },
   {
     image: "/assets/restaurants/Menu.PNG",
     focusCardId: "insights",
+    preload: false,
   },
   {
     image: "/assets/restaurants/Dishes.PNG",
     focusCardId: "experiencias",
+    preload: false,
   },
 ];
+
+if (typeof window !== "undefined") {
+  if (!document.head.querySelector('link[data-preload="hero-restaurants-desktop"]')) {
+    const preloadLink = document.createElement("link");
+    preloadLink.rel = "preload";
+    preloadLink.as = "image";
+    preloadLink.href = "/assets/restaurants/Dashboard_Platform.PNG";
+    preloadLink.dataset.preload = "hero-restaurants-desktop";
+    document.head.appendChild(preloadLink);
+  }
+}
 
 export default function HeroRestaurantsShowcase() {
   const [stage, setStage] = useState(0);
@@ -45,9 +66,10 @@ export default function HeroRestaurantsShowcase() {
             <div className="relative aspect-[2/1]">
               <Image
                 src={currentStage.image}
-                alt="Métricas del dashboard de Gulanity"
+                alt="Dashboard de Gulanity para restaurantes"
                 fill
-                priority
+                priority={false}
+                loading={currentStage.preload ? "eager" : "lazy"}
                 className="object-cover"
                 sizes="(min-width: 1024px) 720px, 100vw"
               />

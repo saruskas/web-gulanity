@@ -7,7 +7,7 @@ import ScrollDepthTracker from "../components/ScrollDepthTracker";
 import { HeroShowcaseSkeleton, ContentSectionSkeleton } from "../components/Skeleton";
 import UsersHeroActions from "./UsersHeroActions";
 import UsersDownloadCard from "./UsersDownloadCard";
-import UsersDownloadSection from "./UsersDownloadSection";
+import DownloadSection from "./DownloadSection";
 import { CheckCircle2, Heart, Sparkles, Shield, Star } from "lucide-react";
 import { siteConfig } from "@/lib/config";
 
@@ -87,7 +87,7 @@ export default function UsersPage() {
                 <UsersDownloadCard />
               </div>
             </div>
-            <div className="relative w-full max-w-md md:max-w-none mx-auto">
+            <div className="relative w-full max-w-md md:max-w-none mx-auto" key="hero-user-showcase">
               <HeroUserShowcase />
             </div>
           </div>
@@ -163,7 +163,7 @@ export default function UsersPage() {
           </div>
         </section>
 
-        <UsersDownloadSection />
+        <DownloadSection />
 
         <UsersClient />
       </main>

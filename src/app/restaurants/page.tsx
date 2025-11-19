@@ -84,7 +84,7 @@ export default function RestaurantsPage() {
                   <RestaurantsHeroActions />
                 </div>
               </div>
-              <div className="relative w-full justify-self-end">
+              <div className="relative w-full justify-self-end" key="hero-restaurants-showcase">
                 <HeroRestaurantsShowcase />
               </div>
             </div>

@@ -86,7 +86,7 @@ export default function HomePage() {
               </p>
               <HomeHeroCtas />
             </div>
-            <div className="relative">
+            <div className="relative" key="hero-dual-showcase">
               <HeroRestaurantsDualShowcase />
             </div>
           </div>

@@ -36,20 +36,41 @@ const highlightCards: HeroCard[] = [
 ];
 
 const STEP_DURATION_MS = 2000;
-const stageTimeline = [
+
+type UserStage = {
+  image: string;
+  focusCardId: string;
+  preload: boolean;
+};
+
+const stageTimeline: UserStage[] = [
   {
     image: "/restaurant_mobile.webp",
     focusCardId: "match",
+    preload: true,
   },
   {
     image: "/restaurant_details.webp",
     focusCardId: "recomendaciones",
+    preload: false,
   },
   {
     image: "/dish_details.webp",
     focusCardId: "reservas",
+    preload: false,
   },
 ];
+
+if (typeof window !== "undefined") {
+  if (!document.head.querySelector('link[data-preload="hero-users-mobile"]')) {
+    const preloadLink = document.createElement("link");
+    preloadLink.rel = "preload";
+    preloadLink.as = "image";
+    preloadLink.href = "/restaurant_mobile.webp";
+    preloadLink.dataset.preload = "hero-users-mobile";
+    document.head.appendChild(preloadLink);
+  }
+}
 
 const positionStyles = {
   "overlay-top": "absolute -right-16 top-12 w-[280px]",
@@ -104,7 +125,8 @@ export default function HeroUserShowcase() {
                 src={currentStage.image}
                 alt="App de Gulanity para usuarios"
                 fill
-                priority
+                priority={false}
+                loading={currentStage.preload ? "eager" : "lazy"}
                 className="object-cover transition-opacity duration-500"
                 sizes="(min-width: 1024px) 280px, 100vw"
               />

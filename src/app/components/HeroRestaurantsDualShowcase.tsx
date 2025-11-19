@@ -5,23 +5,50 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const STEP_DURATION_MS = 2000;
-const stageTimeline = [
+
+type StageStep = {
+  desktopImage: string;
+  mobileImage: string;
+  focusCardId: string;
+  preload: boolean;
+};
+
+const stageTimeline: StageStep[] = [
   {
     desktopImage: "/assets/restaurants/Dashboard_Platform.PNG",
     mobileImage: "/restaurant_mobile.webp",
     focusCardId: "reservas",
+    preload: true,
   },
   {
     desktopImage: "/assets/restaurants/Menu.PNG",
     mobileImage: "/restaurant_details.webp",
     focusCardId: "insights",
+    preload: false,
   },
   {
     desktopImage: "/assets/restaurants/Dishes.PNG",
     mobileImage: "/dish_details.webp",
     focusCardId: "experiencias",
+    preload: false,
   },
 ];
+
+if (typeof window !== "undefined") {
+  const ensurePreload = (href: string, key: string) => {
+    if (document.head.querySelector(`link[data-preload="${key}"]`)) {
+      return;
+    }
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.href = href;
+    link.dataset.preload = key;
+    document.head.appendChild(link);
+  };
+  ensurePreload("/assets/restaurants/Dashboard_Platform.PNG", "hero-dual-desktop");
+  ensurePreload("/restaurant_mobile.webp", "hero-dual-mobile");
+}
 
 export default function HeroRestaurantsDualShowcase() {
   const [stage, setStage] = useState(0);
@@ -50,9 +77,10 @@ export default function HeroRestaurantsDualShowcase() {
               <div className="relative aspect-[2/1]">
                 <Image
                   src={currentStage.desktopImage}
-                  alt="Métricas del dashboard de Gulanity"
+                  alt="Dashboard de Gulanity para restaurantes"
                   fill
-                  priority={true}
+                  priority={false}
+                  loading={currentStage.preload ? "eager" : "lazy"}
                   className="object-cover"
                   sizes="(min-width: 1024px) 620px, 100vw"
                 />
@@ -74,9 +102,10 @@ export default function HeroRestaurantsDualShowcase() {
                 <div className="relative aspect-[9/19.5]">
                   <Image
                     src={currentStage.mobileImage}
-                    alt="Experiencia móvil de Gulanity"
+                    alt="App móvil de Gulanity"
                     fill
-                    priority={true}
+                    priority={false}
+                    loading={currentStage.preload ? "eager" : "lazy"}
                     className="object-cover"
                     sizes="(min-width: 1024px) 190px, 50vw"
                   />
