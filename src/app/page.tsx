@@ -76,13 +76,13 @@ export default function HomePage() {
       <Header />
       <main>
         <ScrollDepthTracker page="home" />
-        <section id="hero" className="hero-full flex items-center bg-gradient-to-b from-[#041522] to-[#062f45] text-white">
+        <section id="hero" className="hero-full flex items-center bg-gradient-to-b from-[#EAE8E0] to-white text-[#052838]">
           <div className="container-outer grid gap-10 lg:grid-cols-2 items-center">
             <div>
-              <p className="text-xs uppercase tracking-[0.4em] text-white/70 mb-4">Plataforma dual</p>
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6">Descubre dónde ir y crece sin comisiones</h1>
-              <p className="text-white/80 mb-8">
-                Foodies encuentran platos reales con la ayuda de su comunidad. Restaurantes llenan mesa con clientes que llegan listos para decidir. Gulanity alinea expectativas y experiencias.
+              <p className="text-xs uppercase tracking-[0.4em] text-[#052838]/60 mb-4">Plataforma dual</p>
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6">Encuentra tu plato perfecto. Llena tu restaurante y cumple expectativas.</h1>
+              <p className="text-[#052838]/70 mb-8">
+                Foodies descubren platos que encajan con su estilo. Restaurantes atraen comensales que saben lo que buscan. Gulanity conecta expectativas con experiencias reales.
               </p>
               <HomeHeroCtas />
             </div>
@@ -153,7 +153,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="lista-espera" className="section-gap bg-[#041522] text-white">
+        <section id="lista-espera" className="section-gap bg-gradient-to-br from-[#052838] to-[#003F5C] text-white">
           <div className="container-outer grid gap-10 lg:grid-cols-2 items-center">
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-white/50 mb-3">Lista de espera</p>
