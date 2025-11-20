@@ -102,7 +102,7 @@ export default function HeroRestaurantsShowcase() {
           return (
             <motion.div
               key={card.id}
-              className={`${positionStyles[card.position]} hidden lg:block`}
+              className={`${positionStyles[card.position as keyof typeof positionStyles]} hidden lg:block`}
               initial={{ opacity: 0, y: 24, scale: 0.96 }}
               animate={{
                 opacity: 1,
@@ -112,7 +112,7 @@ export default function HeroRestaurantsShowcase() {
               transition={{ duration: 0.65, ease: "easeOut" }}
             >
               <div
-                className={`rounded-2xl border px-4 py-4 transition-all duration-500 ${cardStyles[card.variant]} ${
+                className={`rounded-2xl border px-4 py-4 transition-all duration-500 ${cardStyles[card.variant as keyof typeof cardStyles]} ${
                   isFocused ? "ring-2 ring-[#D4BFA6]/70 shadow-[0_35px_80px_rgba(5,20,46,0.18)]" : ""
                 }`}
               >
@@ -130,7 +130,7 @@ export default function HeroRestaurantsShowcase() {
           return (
             <div
               key={`${card.id}-mobile`}
-              className={`rounded-2xl border px-4 py-4 ${cardStyles[card.variant]} ${
+              className={`rounded-2xl border px-4 py-4 ${cardStyles[card.variant as keyof typeof cardStyles]} ${
                 isFocused ? "ring-2 ring-[#D4BFA6]/60" : ""
               }`}
             >
