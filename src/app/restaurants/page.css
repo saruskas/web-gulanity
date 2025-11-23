@@ -38,7 +38,7 @@
 }
 
 .restaurants-hero-grid {
-  @apply grid grid-cols-1 sm:grid-cols-[1fr_1.2fr] lg:grid-cols-[1fr_1fr] xl:grid-cols-[1fr_1.2fr] gap-10 lg:gap-8 xl:gap-10 items-center;
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-10 xl:gap-12 items-center;
 }
 
 .restaurants-hero-text {

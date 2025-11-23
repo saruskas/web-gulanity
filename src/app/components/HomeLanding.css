@@ -2,5 +2,5 @@
 
 /* Título principal de la landing */
 .hero-main-title {
-  @apply mt-52 mb-4 text-[26px] sm:text-[32px] lg:text-[36px] xl:text-[42px];
+  @apply mt-40 sm:mt-44 lg:mt-48 xl:mt-52 mb-6 text-[26px] sm:text-[32px] lg:text-[36px] xl:text-[44px] fhd:text-[48px];
 }

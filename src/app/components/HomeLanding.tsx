@@ -86,15 +86,15 @@ export default function HomeLanding() {
           Software gastronómico inteligente para restaurantes exigentes y foodies que no improvisan
         </motion.h1>
 
-        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-0 lg:gap-8 xl:gap-0 relative">
+        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-0 lg:gap-6 xl:gap-8 relative">
           <div className="absolute inset-y-0 left-1/2 w-[2px] bg-gradient-to-b from-transparent via-white/35 to-transparent z-10 hidden sm:block" />
           <motion.div
-            className="relative flex flex-col items-center justify-end sm:justify-center px-8 lg:px-6 py-12 lg:py-10 text-white min-h-[500px] lg:min-h-[550px]"
+            className="relative flex flex-col items-center justify-end sm:justify-center px-6 lg:px-8 xl:px-10 py-12 text-white min-h-[500px]"
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           >
-            <div className="max-w-sm lg:max-w-md qhd:max-w-lg w-full flex-shrink-0 relative z-10 sm:mx-auto sm:translate-x-8 lg:mr-auto lg:ml-0 lg:translate-x-0 xl:mx-auto xl:translate-x-8">
+            <div className="max-w-md xl:max-w-lg qhd:max-w-xl w-full flex-shrink-0 relative z-10">
               <div className="mb-8">
                 <span className="inline-block px-4 py-1 rounded-full bg-[#D4BFA6]/15 border border-[#D4BFA6]/25 text-[#D4BFA6] text-xs font-semibold uppercase tracking-wider backdrop-blur-sm relative group cursor-help">
                   B2B
@@ -104,13 +104,13 @@ export default function HomeLanding() {
                   </div>
                 </span>
               </div>
-              <h2 className="text-3xl lg:text-2xl xl:text-3xl qhd:text-[36px] qhd:leading-[40px] font-display mb-5 lg:mb-4 text-white leading-tight">
+              <h2 className="text-3xl lg:text-3xl xl:text-4xl qhd:text-[42px] qhd:leading-[48px] font-display mb-5 text-white leading-tight">
                 Llena tus mesas con clientes informados
               </h2>
-              <p className="text-white/75 mb-8 lg:mb-6 leading-relaxed text-base lg:text-sm qhd:text-[16px]">
+              <p className="text-white/75 mb-8 leading-relaxed text-base xl:text-lg qhd:text-xl">
                 Gulanity combina datos, creadores y reservas verificadas sin comisiones.
               </p>
-              <ul className="space-y-4 lg:space-y-3 mb-10 lg:mb-8">
+              <ul className="space-y-4 mb-10">
                 <li className="flex items-start gap-4">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#D4BFA6]/30 bg-[#D4BFA6]/10 flex-shrink-0 backdrop-blur-sm">
                     <CheckCircle2 className="h-5 w-5 text-[#D4BFA6]" />
@@ -149,22 +149,19 @@ export default function HomeLanding() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <div className="absolute -left-[38rem] bottom-[-6rem] md:-left-[65rem] lg:-left-[28rem] lg:bottom-[-4rem] xl:-left-[38rem] xl:bottom-[-6rem] qhd:-left-[41rem] qhd:bottom-[-4rem] w-[45rem] lg:w-[36rem] xl:w-[45rem] mx-auto flex-shrink-0 hidden sm:block lg:hidden xl:block">
-                <HeroRestaurantsShowcase hideCards={true} />
-              </div>
             </div>
-            <div className="relative w-full max-w-md mx-auto flex-shrink-0 mt-8 sm:hidden">
+            <div className="relative w-full max-w-md mx-auto flex-shrink-0 mt-12 sm:hidden">
               <HeroRestaurantsShowcase hideCards={true} />
             </div>
           </motion.div>
 
           <motion.div
-            className="relative flex flex-col items-center justify-center px-8 lg:px-6 py-12 lg:py-10 text-white min-h-[500px] lg:min-h-[550px]"
+            className="relative flex flex-col items-center justify-center px-6 lg:px-8 xl:px-10 py-12 text-white min-h-[500px]"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            <div className="max-w-sm lg:max-w-md qhd:max-w-lg w-full flex-shrink-0 relative z-10 sm:mx-auto sm:-translate-x-8 lg:ml-0 lg:mr-auto lg:translate-x-0 xl:mx-auto xl:-translate-x-8">
+            <div className="max-w-md xl:max-w-lg qhd:max-w-xl w-full flex-shrink-0 relative z-10">
               <div className="mb-8">
                 <span className="inline-block px-4 py-1 rounded-full bg-white/15 border border-white/25 text-white text-xs font-semibold uppercase tracking-wider backdrop-blur-sm relative group cursor-help">
                   B2C
@@ -174,13 +171,13 @@ export default function HomeLanding() {
                   </div>
                 </span>
               </div>
-              <h2 className="text-3xl lg:text-2xl xl:text-3xl qhd:text-[36px] qhd:leading-[40px] font-display mb-5 lg:mb-4 text-white leading-tight">
+              <h2 className="text-3xl lg:text-3xl xl:text-4xl qhd:text-[42px] qhd:leading-[48px] font-display mb-5 text-white leading-tight">
                 Encuentra dónde comer sin perder tiempo
               </h2>
-              <p className="text-white/75 mb-8 lg:mb-6 leading-relaxed text-base lg:text-sm qhd:text-[16px]">
+              <p className="text-white/75 mb-8 leading-relaxed text-base xl:text-lg qhd:text-xl">
                 Explora cartas vivas, reseñas reales y mapas curados por tu comunidad.
               </p>
-              <ul className="space-y-4 lg:space-y-3 mb-10 lg:mb-8">
+              <ul className="space-y-4 mb-10">
                 <li className="flex items-start gap-4">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 flex-shrink-0 backdrop-blur-sm">
                     <UtensilsCrossed className="h-5 w-5 text-white" />
@@ -219,11 +216,8 @@ export default function HomeLanding() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <div className="absolute -right-[24rem] bottom-[-6rem] md:-right-[55rem] lg:-right-[18rem] lg:bottom-[-4rem] xl:-right-[24rem] xl:bottom-[-6rem] qhd:-right-[26rem] qhd:bottom-[-4rem] w-[30rem] lg:w-[24rem] xl:w-[30rem] mx-auto flex-shrink-0 hidden sm:block lg:hidden xl:block">
-                <HeroUserShowcase hideCards={true} />
-              </div>
             </div>
-            <div className="relative w-full max-w-md mx-auto flex-shrink-0 mt-8 sm:hidden">
+            <div className="relative w-full max-w-md mx-auto flex-shrink-0 mt-12 sm:hidden">
               <HeroUserShowcase hideCards={true} />
             </div>
           </motion.div>
