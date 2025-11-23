@@ -31,12 +31,12 @@ export default function CookieBanner() {
       }}
       onAccept={() => {
         if (process.env.NODE_ENV === "development") {
-          console.log("Cookies aceptadas");
+          console.log("Cookies accepted");
         }
       }}
       onDecline={() => {
         if (process.env.NODE_ENV === "development") {
-          console.log("Cookies rechazadas");
+          console.log("Cookies declined");
         }
       }}
     >

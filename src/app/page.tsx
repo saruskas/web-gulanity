@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import Footer from "./components/Footer";
 import ScrollDepthTracker from "./components/ScrollDepthTracker";
 import HomeLanding from "./components/HomeLanding";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Gulanity | Descubre dónde ir y crece sin comisiones",
+  title: "Gulanity",
   description: siteConfig.description,
   alternates: {
     canonical: siteConfig.url,
@@ -32,7 +31,6 @@ export default function HomePage() {
         <ScrollDepthTracker page="home" />
         <HomeLanding />
       </main>
-      <Footer />
     </div>
   );
 }

@@ -3,14 +3,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { BookOpen, LogIn } from "lucide-react";
 import { useScrolled } from "@/app/hooks/useScrolled";
 import { useFocusTrap } from "@/app/hooks/useFocusTrap";
+import ContactModal from "./ContactModal";
 
-export default function Header() {
+type HeaderProps = {
+  loginUrl?: string;
+};
+
+export default function Header({ loginUrl }: HeaderProps = {}) {
   const scrolled = useScrolled(2);
   const pathname = usePathname();
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [contactModalOpen, setContactModalOpen] = useState(false);
 
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const panelRef = useRef<HTMLDivElement | null>(null);
@@ -18,36 +25,22 @@ export default function Header() {
   const isRestaurants = pathname === "/restaurants";
   const isUsers = pathname === "/users";
   const restaurantsNavLinks = [
-    { label: "Inicio", href: "#hero", mode: "anchor" as const },
-    { label: "Qué ganas", href: "#que-ganas", mode: "anchor" as const },
-    { label: "Cómo funciona", href: "#como-funciona", mode: "anchor" as const },
-    { label: "Lista de espera", href: "#lista-espera", mode: "anchor" as const },
-    { label: "Feedback", href: "#feedback", mode: "anchor" as const },
-    { label: "Blog", href: "/blog", mode: "route" as const },
+    { label: "Contacto", href: "#contacto", mode: "modal" as const },
   ];
 
   const usersNavLinks = [
-    { label: "Inicio", href: "#hero", mode: "anchor" as const },
-    { label: "Qué ganas", href: "#que-ganas", mode: "anchor" as const },
-    { label: "Cómo funciona", href: "#como-funciona", mode: "anchor" as const },
-    { label: "Descargar", href: "#descargar", mode: "anchor" as const },
-    { label: "Ayúdanos a mejorar", href: "#feedback", mode: "anchor" as const },
-    { label: "Blog", href: "/blog", mode: "route" as const },
+    { label: "Contacto", href: "#contacto", mode: "modal" as const },
   ];
 
   const landingNavLinks = [
     { label: "Hero", href: "#hero", mode: "anchor" as const },
-    { label: "Selector", href: "#audiencias", mode: "anchor" as const },
-    { label: "Arquitectura", href: "#detalles", mode: "anchor" as const },
-    { label: "Timeline", href: "#flujo", mode: "anchor" as const },
-    { label: "Lista de espera", href: "#lista-espera", mode: "anchor" as const },
     { label: "Blog", href: "/blog", mode: "route" as const },
   ];
 
   const navLinks = isRestaurants ? restaurantsNavLinks : isUsers ? usersNavLinks : landingNavLinks;
-  const logoDimensions = { width: 194, height: 30 };
-  const logoSizes = "(max-width: 640px) 155px, 194px";
-  const logoClass = "h-[30px] w-auto object-contain";
+  const logoDimensions = (isRestaurants || isUsers) ? { width: 240, height: 38 } : { width: 194, height: 30 };
+  const logoSizes = (isRestaurants || isUsers) ? "(max-width: 640px) 192px, 240px" : "(max-width: 640px) 155px, 194px";
+  const logoClass = (isRestaurants || isUsers) ? "h-[38px] w-auto" : "h-[30px] w-auto";
 
   // Cerrar con clic/touch fuera y con Escape. Además, bloquear scroll cuando el menú está abierto.
   useEffect(() => {
@@ -105,7 +98,7 @@ export default function Header() {
   };
 
   return (
-    <header className={`app-header ${scrolled ? "app-header-border" : ""}`}>
+    <header className={`app-header ${scrolled ? "app-header-border" : ""} ${isUsers ? "app-header-white" : ""}`}>
       <div className="container-outer h-full">
         <div className="h-full flex items-center justify-between gap-3 py-3">
           {/* Logo compacto */}
@@ -117,9 +110,14 @@ export default function Header() {
               height={logoDimensions.height}
               quality={100}
               sizes={logoSizes}
-              className={logoClass}
+              className={`${logoClass} object-contain`}
               priority
-              style={{ objectFit: "contain" }}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                if (target.src.includes("logo_user.png")) {
+                  target.src = "/logo_rest.png";
+                }
+              }}
             />
           </Link>
 
@@ -129,7 +127,7 @@ export default function Header() {
             <button
               ref={buttonRef}
               onClick={() => setMenuOpen((v) => !v)}
-              className="p-2 text-white/80 hover:text-white transition-colors"
+              className={`p-2 transition-colors ${isUsers ? "text-[#052838]/80 hover:text-[#052838]" : "text-white/80 hover:text-white"}`}
               aria-expanded={menuOpen}
               aria-haspopup="true"
               aria-label="Abrir menú"
@@ -161,7 +159,7 @@ export default function Header() {
             {menuOpen && (
               <div
                 ref={panelRef}
-                className="absolute top-full right-0 mt-2 w-56 bg-[#052838] border border-white/10 rounded-xl shadow-xl z-[110] overflow-hidden"
+                className={`absolute top-full right-0 mt-2 w-56 rounded-xl shadow-xl z-[110] overflow-hidden ${isUsers ? "bg-white border border-[#052838]/10" : "bg-[#052838] border border-white/10"}`}
               >
                 <nav className="py-2" aria-label="Navegación principal">
                   <ul>
@@ -174,15 +172,25 @@ export default function Header() {
                               e.preventDefault();
                               handleMenuClick(link.href);
                             }}
-                            className="block px-4 py-2.5 text-[13px] text-white/85 hover:text-white hover:bg-white/5 transition-colors"
+                            className={`block px-4 py-2.5 text-[13px] transition-colors ${isUsers ? "text-[#052838]/85 hover:text-[#052838] hover:bg-[#052838]/5" : "text-white/85 hover:text-white hover:bg-white/5"}`}
                           >
                             {link.label}
                           </a>
+                        ) : link.mode === "modal" ? (
+                          <button
+                            onClick={() => {
+                              setMenuOpen(false);
+                              setContactModalOpen(true);
+                            }}
+                            className={`block w-full text-left px-4 py-2.5 text-[13px] transition-colors ${isUsers ? "text-[#052838]/85 hover:text-[#052838] hover:bg-[#052838]/5" : "text-white/85 hover:text-white hover:bg-white/5"}`}
+                          >
+                            {link.label}
+                          </button>
                         ) : (
                           <Link
                             href={link.href}
                             onClick={() => setMenuOpen(false)}
-                            className="block px-4 py-2.5 text-[13px] text-white/85 hover:text-white hover:bg-white/5 transition-colors"
+                            className={`block px-4 py-2.5 text-[13px] transition-colors ${isUsers ? "text-[#052838]/85 hover:text-[#052838] hover:bg-[#052838]/5" : "text-white/85 hover:text-white hover:bg-white/5"}`}
                           >
                             {link.label}
                           </Link>
@@ -194,22 +202,14 @@ export default function Header() {
               </div>
             )}
 
-            {/* Link directo al blog */}
-            <Link
-              href="/blog"
-              className="hidden sm:inline-flex items-center rounded-full border border-white/15 px-3.5 py-1.5 text-xs font-semibold text-white/85 hover:bg-white/10 hover:text-white transition-all"
-            >
-              Blog
-            </Link>
-
             {/* Toggle - solo visible al hacer scroll */}
             {scrolled && (
               <nav aria-label="Selector de vista" className="shrink-0">
-                <div className="inline-flex rounded-full p-0.5 bg-white/5 border border-white/10">
+                <div className={`inline-flex rounded-full p-0.5 ${isUsers ? "bg-[#052838]/5 border border-[#052838]/10" : "bg-white/5 border border-white/10"}`}>
                   <Link
                     href="/restaurants"
                     className={`px-3.5 py-1.5 rounded-full text-[11.5px] font-semibold transition-all ${
-                      isRestaurants ? "bg-[#D4BFA6] text-[#052838]" : "text-white/85 hover:text-white"
+                      isRestaurants ? "bg-[#D4BFA6] text-[#052838]" : isUsers ? "text-[#052838]/85 hover:text-[#052838]" : "text-white/85 hover:text-white"
                     }`}
                     aria-current={isRestaurants ? "page" : undefined}
                   >
@@ -227,9 +227,32 @@ export default function Header() {
                 </div>
               </nav>
             )}
+
+            {/* Link directo al blog */}
+            <Link
+              href="/blog"
+              className={`hidden sm:inline-flex md:inline-flex lg:inline-flex xl:inline-flex fhd:inline-flex qhd:inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all ${isUsers ? "border border-[#052838]/15 text-[#052838]/85 hover:bg-[#052838]/10 hover:text-[#052838]" : "border border-white/15 text-white/85 hover:bg-white/10 hover:text-white"}`}
+            >
+              <BookOpen className="w-4 h-4" />
+              Blog
+            </Link>
+
+            {/* Botón Login - solo en restaurantes */}
+            {isRestaurants && loginUrl && (
+              <a
+                href={loginUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:inline-flex md:inline-flex lg:inline-flex xl:inline-flex fhd:inline-flex qhd:inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all border border-white/15 text-white/85 hover:bg-white/10 hover:text-white"
+              >
+                <LogIn className="w-4 h-4" />
+                Login
+              </a>
+            )}
           </div>
         </div>
       </div>
+      {(isUsers || isRestaurants) && <ContactModal open={contactModalOpen} onOpenChange={setContactModalOpen} />}
     </header>
   );
 }

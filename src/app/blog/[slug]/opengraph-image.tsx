@@ -15,9 +15,15 @@ const blogPostMeta: Record<string, { title: string; category: string }> = {
   },
 };
 
-export const runtime = "edge";
+export const dynamic = 'force-static';
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+
+export function generateStaticParams() {
+  return Object.keys(blogPostMeta).map((slug) => ({
+    slug,
+  }));
+}
 
 type OgImageProps = {
   params: { slug: string };

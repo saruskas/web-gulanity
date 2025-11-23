@@ -1,15 +1,82 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { readFileSync, readdirSync, statSync } from "fs";
+import { join } from "path";
+import yaml from "js-yaml";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollDepthTracker from "../components/ScrollDepthTracker";
 import UsersHeroActions from "./UsersHeroActions";
 import UsersDownloadCard from "./UsersDownloadCard";
-import DownloadSection from "./DownloadSection";
 import HeroUserShowcase from "../components/HeroUserShowcase";
-import UsersClient from "./UsersClient";
-import { CheckCircle2, Heart, Sparkles, Shield, Star } from "lucide-react";
-import { siteConfig } from "@/lib/config";
+import AmenitiesLoop from "./AmenitiesLoop";
+import AllergensLoop from "./AllergensLoop";
+import DishesMetric from "./DishesMetric";
+import RestaurantMetric from "./RestaurantMetric";
+import CuisineMetric from "./CuisineMetric";
+import AmenityMetric from "./AmenityMetric";
+import AllergenMetric from "./AllergenMetric";
+import ImageGallery from "./ImageGallery";
+import { CheckCircle2 } from "lucide-react";
+import "./page.css";
+
+function getAppUrls() {
+  try {
+    const filePath = join(process.cwd(), "data", "app-urls.yaml");
+    const fileContents = readFileSync(filePath, "utf8");
+    const data = yaml.load(fileContents) as { ios: string; android: string };
+    return data;
+  } catch (error) {
+    console.error("Error reading app-urls.yaml:", error);
+    return {
+      ios: "https://apps.apple.com/app/gulanity",
+      android: "https://play.google.com/store/apps/details?id=com.gulanity.app",
+    };
+  }
+}
+
+function getCloudConfig() {
+  try {
+    const filePath = join(process.cwd(), "data", "cloud-config.yaml");
+    const fileContents = readFileSync(filePath, "utf8");
+    const data = yaml.load(fileContents) as {
+      cloudHost: string;
+    };
+    return data;
+  } catch (error) {
+    console.error("Error reading cloud-config.yaml:", error);
+    return {
+      cloudHost: "https://cloud.dev.neocody.net",
+    };
+  }
+}
+
+function getGalleryImages() {
+  try {
+    const galleryPath = join(process.cwd(), "public", "gallery", "users");
+    const files = readdirSync(galleryPath);
+    const imageExtensions = [".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg", ".JPG", ".JPEG", ".PNG", ".WEBP", ".GIF", ".SVG"];
+    const images = files
+      .filter((file) => {
+        const filePath = join(galleryPath, file);
+        const stats = statSync(filePath);
+        if (!stats.isFile()) return false;
+        return imageExtensions.some((ext) => file.endsWith(ext));
+      })
+      .map((file) => {
+        const fileName = file.replace(/\.[^/.]+$/, "");
+        return {
+          src: `/gallery/users/${file}`,
+          alt: fileName.replace(/[-_]/g, " "),
+          width: 300,
+          height: 300,
+        };
+      });
+    return images;
+  } catch (error) {
+    console.error("Error reading gallery folder:", error);
+    return [];
+  }
+}
 
 export const metadata: Metadata = {
   title: "Usuarios - Gulanity | Descubre platos sin sorpresas",
@@ -27,12 +94,9 @@ export const metadata: Metadata = {
 };
 
 export default function UsersPage() {
-  const gainCards = [
-    { icon: <Heart className="w-6 h-6" />, title: "Experiencias auténticas", desc: "Descubre lugares recomendados por personas reales." },
-    { icon: <Sparkles className="w-6 h-6" />, title: "Encuentra tu match", desc: "Filtros que van más allá del rating." },
-    { icon: <Shield className="w-6 h-6" />, title: "Sin sorpresas", desc: "Lo que ves es lo que encuentras." },
-    { icon: <Star className="w-6 h-6" />, title: "Súper fácil", desc: "Busca, reserva y disfruta en segundos." },
-  ];
+  const appUrls = getAppUrls();
+  const cloudConfig = getCloudConfig();
+  const galleryImages = getGalleryImages();
   const impactItems = ["Foodies verificados que comparten tu gusto", "Filtros por preferencias, no solo ubicación", "Información clara antes de reservar"];
   const steps = [
     { num: "1", title: "Explora", desc: "Decenas de filtros para encontrar lo que buscas en segundos." },
@@ -40,84 +104,80 @@ export default function UsersPage() {
     { num: "3", title: "Comparte", desc: "Guarda y recomienda tus platos favoritos en dos clics." },
   ];
   return (
-    <div className="min-h-screen bg-white text-[#052838]">
+    <div className="users-page">
       <Header />
       <main>
         <ScrollDepthTracker page="users" />
-        <section id="hero" className="hero-full-light flex items-center">
-          <div className="container-outer grid md:grid-cols-2 gap-10 items-center">
-            <div className="justify-self-start">
-              <div className="max-w-xl mx-auto flex flex-col items-center text-center">
-                <div className="mb-6">
-                  <div className="inline-flex rounded-full p-1 bg-gray-100 border border-gray-200">
-                    <Link href="/restaurants" className="px-5 py-2 text-[#052838]/70 hover:text-[#052838] rounded-full text-xs font-semibold transition-all">
-                      Soy Restaurante
-                    </Link>
-                    <Link href="/users" className="px-5 py-2 bg-[#F4BF00] text-[#052838] rounded-full text-xs font-semibold transition-all">
-                      Soy Usuario
-                    </Link>
-                  </div>
+        <section id="hero" className="users-hero">
+          <div className="container-outer">
+            <div className="users-hero-grid">
+              <div className="users-hero-content">
+                <div className="users-hero-text">
+                  <h1 className="users-hero-title font-display">Tu próximo plato favorito está a un tap de distancia</h1>
+                  <p className="users-hero-description">
+                    Encuentra platos y restaurantes que encajan contigo gracias a recomendaciones reales de tu comunidad.
+                  </p>
+                  <UsersHeroActions />
+                  <UsersDownloadCard iosUrl={appUrls.ios} androidUrl={appUrls.android} />
                 </div>
-                <h1 className="text-[#052838] font-display mb-4">Tu próximo plato favorito está a un tap de distancia</h1>
-                <p className="text-[#052838]/70 leading-relaxed mb-8">
-                  Encuentra platos y restaurantes que encajan contigo gracias a recomendaciones reales de tu comunidad.
-                </p>
-                <UsersHeroActions />
-                <UsersDownloadCard />
+              </div>
+              <div className="relative w-full max-w-md sm:max-w-none md:max-w-none lg:max-w-none xl:max-w-none fhd:max-w-none qhd:max-w-none mx-auto" key="hero-user-showcase">
+                <HeroUserShowcase />
               </div>
             </div>
-            <div className="relative w-full max-w-md md:max-w-none mx-auto" key="hero-user-showcase">
-              <HeroUserShowcase />
+            <div className="mt-4 sm:mt-6 md:mt-6 lg:mt-8 xl:mt-8 fhd:mt-8 qhd:mt-8">
+              <div className="users-gain-cards">
+                <DishesMetric config={cloudConfig} />
+                <RestaurantMetric config={cloudConfig} />
+                <CuisineMetric config={cloudConfig} />
+                <AmenityMetric config={cloudConfig} />
+                <AllergenMetric config={cloudConfig} />
+              </div>
             </div>
           </div>
         </section>
 
-        <section id="que-ganas" className="section-gap bg-gray-50">
+        <div className="users-hero-separator"></div>
+
+        <section id="galeria" className="users-section users-bg-white">
           <div className="container-outer">
-            <h2 className="text-[#052838] text-center mb-10 md:mb-12">Qué ganas</h2>
-            <div className="grid gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-              {gainCards.map((item) => (
-                <article key={item.title} className="card-compact hover:shadow-lg transition-all">
-                  <div className="mb-3 text-[#F4BF00]">{item.icon}</div>
-                  <h3 className="text-[#052838] mb-2">{item.title}</h3>
-                  <p>{item.desc}</p>
-                </article>
-              ))}
-            </div>
+            <ImageGallery
+              images={galleryImages}
+            />
           </div>
         </section>
 
-        <section id="beneficios" className="section-gap bg-white">
+        <section id="beneficios" className="users-section users-bg-white">
           <div className="container-outer">
-            <h2 className="text-[#052838] text-center mb-2">La diferencia es clara</h2>
-            <p className="text-sm text-gray-500 text-center mb-10 md:mb-12">Datos orientativos basados en pruebas internas.</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <h2 className="users-section-title">La diferencia es clara</h2>
+            <p className="users-section-subtitle">Datos orientativos basados en pruebas internas.</p>
+            <div className="users-metrics-grid">
               {[
                 { value: "92%", label: "Satisfacción con la elección" },
                 { value: "4.2x", label: "Más probabilidad de repetir" },
                 { value: "−68%", label: "Decepciones evitadas" },
               ].map((metric) => (
-                <div key={metric.label} className="text-center">
-                  <div className="text-5xl md:text-6xl font-display font-bold text-[#F4BF00] mb-3 metric">{metric.value}</div>
-                  <p className="text-base text-[#052838]">{metric.label}</p>
+                <div key={metric.label} className="users-metric">
+                  <div className="users-metric-value font-display">{metric.value}</div>
+                  <p className="users-metric-label">{metric.label}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="impacto" className="section-gap bg-gray-50">
-          <div className="container-outer max-w-4xl">
-            <h2 className="text-[#052838] text-center mb-10 md:mb-12">Por qué es diferente</h2>
-            <div className="bg-gradient-to-br from-[#F4BF00]/10 to-transparent border border-[#F4BF00]/20 rounded-3xl p-6 md:p-10">
-              <p className="text-xl md:text-2xl font-display text-[#052838] text-center leading-relaxed">
+        <section id="impacto" className="users-section users-bg-white">
+          <div className="container-outer">
+            <h2 className="users-section-title">Por qué es diferente</h2>
+            <div className="users-impact-card">
+              <p className="users-impact-text font-display">
                 Recomendaciones reales → decisiones informadas → experiencias que coinciden
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+              <div className="users-impact-list">
                 {impactItems.map((item) => (
-                  <div key={item} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-[#F4BF00] flex-shrink-0 mt-0.5" />
-                    <p className="text-sm text-gray-600">{item}</p>
+                  <div key={item} className="users-impact-item">
+                    <CheckCircle2 className="users-impact-icon" />
+                    <p className="users-impact-item-text">{item}</p>
                   </div>
                 ))}
               </div>
@@ -125,26 +185,25 @@ export default function UsersPage() {
           </div>
         </section>
 
-        <section id="como-funciona" className="section-gap bg-white">
+        <section id="como-funciona" className="users-section users-bg-white">
           <div className="container-outer">
-            <h2 className="text-[#052838] text-center mb-10 md:mb-12">Cómo funciona</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <h2 className="users-section-title">Cómo funciona</h2>
+            <div className="users-steps-grid">
               {steps.map((step) => (
-                <article key={step.num} className="border border-gray-100 rounded-2xl p-6 shadow-sm">
-                  <div className="bg-[#F4BF00] text-[#052838] w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-lg mb-4">
+                <article key={step.num} className="users-step-card">
+                  <div className="users-step-number font-display">
                     {step.num}
                   </div>
-                  <h3 className="text-[#052838] mb-2">{step.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p>
+                  <h3 className="users-step-title">{step.title}</h3>
+                  <p className="users-step-description">{step.desc}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <DownloadSection />
-
-        <UsersClient />
+        <AmenitiesLoop config={cloudConfig} />
+        <AllergensLoop config={cloudConfig} />
       </main>
       <Footer />
     </div>

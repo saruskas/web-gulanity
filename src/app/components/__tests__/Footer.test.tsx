@@ -37,7 +37,7 @@ describe("Footer", () => {
 
   it("muestra el email de contacto", () => {
     render(<Footer />);
-    expect(screen.getByText(/hola@gulanity.com/i)).toBeInTheDocument();
+    expect(screen.getByText(/contact@gulanity.com/i)).toBeInTheDocument();
   });
 
   it("incluye enlaces legales", () => {

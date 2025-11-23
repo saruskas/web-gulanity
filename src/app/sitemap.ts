@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/config";
 
+export const dynamic = 'force-static';
+
 const blogPosts = [
   { slug: "futuro-carta-digital-ia", lastModified: "2025-08-01" },
   { slug: "5-formas-fidelizar-clientes-restaurante", lastModified: "2025-08-03" },
@@ -9,28 +11,29 @@ const blogPosts = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
+  const today = new Date();
   const mainPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: today,
       changeFrequency: "daily",
       priority: 1,
     },
     {
       url: `${baseUrl}/restaurants`,
-      lastModified: new Date(),
+      lastModified: today,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/users`,
-      lastModified: new Date(),
+      lastModified: today,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: new Date(),
+      lastModified: today,
       changeFrequency: "daily",
       priority: 0.8,
     },

@@ -1,9 +1,11 @@
+
 import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollDepthTracker from "../components/ScrollDepthTracker";
 import BlogNewsletterForm from "../components/BlogNewsletterForm";
+import "./page.css";
 
 export const metadata: Metadata = {
   title: "Blog - Gulanity",
@@ -57,7 +59,7 @@ export default function BlogPage() {
       <Header />
       <main>
         <ScrollDepthTracker page="blog" />
-        <section className="section-gap bg-white border-b border-gray-100 pt-24 md:pt-28">
+        <section className="section-gap bg-white border-b border-gray-100 pt-24 sm:pt-28 md:pt-28 lg:pt-28 xl:pt-28 fhd:pt-28 qhd:pt-28">
           <div className="container-outer">
             <div className="max-w-3xl mx-auto text-center">
               <p className="text-xs tracking-[0.4em] uppercase text-[#052838]/60 mb-4">Historias Gulanity</p>
@@ -71,10 +73,10 @@ export default function BlogPage() {
         <section className="section-gap bg-gray-50">
           <div className="container-outer">
             <div className="max-w-2xl mx-auto text-center mb-10">
-              <h2 className="text-[#052838] font-display text-3xl md:text-4xl mb-3">Últimos artículos</h2>
+              <h2 className="text-[#052838] font-display text-3xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-4xl fhd:text-4xl qhd:text-4xl mb-3">Últimos artículos</h2>
               <p className="text-[#052838]/70">Selección de historias recientes para restaurantes y foodies.</p>
             </div>
-            <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 sm:gap-8 md:gap-8 lg:gap-8 xl:gap-8 fhd:gap-8 qhd:gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 fhd:grid-cols-3 qhd:grid-cols-3">
               {blogPosts.map((post) => (
                 <article key={post.slug} className="rounded-3xl border border-gray-100 bg-white p-6 shadow-[0_20px_45px_rgba(5,20,46,0.08)] flex flex-col gap-4">
                   <div className="text-xs uppercase tracking-wide text-[#052838]/60 flex items-center justify-between">
@@ -109,7 +111,7 @@ export default function BlogPage() {
           <div className="container-outer">
             <div className="rounded-[32px] border border-gray-100 bg-gray-50 p-10 text-center shadow-sm space-y-5">
               <p className="text-xs uppercase tracking-[0.4em] text-[#052838]/50">Newsletter</p>
-              <h2 className="text-[#052838] font-display text-3xl">¿Te gustó nuestro contenido?</h2>
+              <h2 className="text-[#052838] font-display text-3xl sm:text-3xl md:text-3xl lg:text-3xl xl:text-3xl fhd:text-3xl qhd:text-3xl">¿Te gustó nuestro contenido?</h2>
               <p className="text-[#052838]/70 max-w-2xl mx-auto">
                 Suscríbete para recibir historias relevantes sobre data gastronómica, fidelización e innovación sin ruido y con el tono cercano de Gulanity.
               </p>

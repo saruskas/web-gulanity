@@ -48,7 +48,7 @@ export default function BlogPost() {
       url: "https://gulanity.com",
       logo: {
         "@type": "ImageObject",
-        url: "https://gulanity.com/logo.png",
+        url: "https://gulanity.com/logo_rest.png",
         width: 500,
         height: 500,
       },
@@ -58,7 +58,7 @@ export default function BlogPost() {
       name: "Gulanity",
       logo: {
         "@type": "ImageObject",
-        url: "https://gulanity.com/logo.png",
+        url: "https://gulanity.com/logo_rest.png",
         width: 500,
         height: 500,
       },
@@ -113,7 +113,7 @@ export default function BlogPost() {
         <section className="section-gap bg-white">
           <div className="container-outer max-w-4xl text-center space-y-4">
             <span className="inline-flex items-center justify-center px-4 py-1 rounded-full bg-[#D4BFA6]/20 text-xs font-semibold uppercase tracking-[0.2em] text-[#052838]">Tecnología</span>
-            <h1 className="text-4xl md:text-5xl font-display text-[#052838]">El futuro de la carta digital con IA</h1>
+            <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-5xl fhd:text-5xl qhd:text-5xl font-display text-[#052838]">El futuro de la carta digital con IA</h1>
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-[#052838]/70">
               <time dateTime="2025-08-01">1 de agosto, 2025</time>
               <span>•</span>

@@ -1,0 +1,6 @@
+/* Estilos específicos para HomeLanding */
+
+/* Título principal de la landing */
+.hero-main-title {
+  @apply mt-52 mb-4 text-[26px] sm:text-[32px] md:text-[32px] lg:text-[36px] xl:text-[42px] fhd:text-[42px] qhd:text-[42px] qhd:leading-[42px];
+}

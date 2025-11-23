@@ -20,8 +20,8 @@ export default function Navbar() {
   }, []);
 
   React.useEffect(() => {
-    if (pathname?.startsWith("/restaurantes")) setAud("restaurant");
-    if (pathname?.startsWith("/usuarios")) setAud("user");
+    if (pathname?.startsWith("/restaurants")) setAud("restaurant");
+    if (pathname?.startsWith("/users")) setAud("user");
   }, [pathname]);
 
   function onSwitch(to: Audience) {
@@ -29,18 +29,18 @@ export default function Navbar() {
     setAud(to);
     setAudience(to);
     track("audience_switch_click", { from, to, path: pathname });
-    router.push(to === "user" ? "/usuarios" : "/restaurantes");
+    router.push(to === "user" ? "/users" : "/restaurants");
   }
 
   return (
     <nav className="bg-[#052838]/95 backdrop-blur border-b border-white/10">
-      <div className="mx-auto max-w-7xl px-4 h-16 flex items-center justify-between">
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-6 md:px-6 lg:px-8 xl:px-8 fhd:px-8 qhd:px-8 h-16 flex items-center justify-between">
         <Link href="/" aria-label="Ir a la Home" className="flex items-center">
-          <Image src="/logo.png" alt="Gulanity" width={140} height={40} className="h-8 w-auto" priority />
+          <Image src="/logo_rest.png" alt="Gulanity" width={140} height={40} className="h-8 w-auto" priority />
         </Link>
 
         {/* Desktop - Solo switcher */}
-        <div className="hidden md:flex items-center">
+        <div className="hidden sm:flex md:flex lg:flex xl:flex fhd:flex qhd:flex items-center">
           {/* Segmented control tipo "píldora" */}
           <div
             role="group"
@@ -77,7 +77,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile */}
-        <div className="md:hidden">
+        <div className="sm:hidden md:hidden lg:hidden xl:hidden fhd:hidden qhd:hidden">
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" aria-label="Abrir menú" className="text-white hover:text-[var(--brand-gold)]">

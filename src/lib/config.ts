@@ -8,15 +8,16 @@ export const siteConfig = {
   url: "https://gulanity.com",
   description: "Conecta usuarios y restaurantes locales: descubre platos reales o atrae clientes sin comisiones.",
   contact: {
-    email: "hola@gulanity.com",
-    phone: "850-123-5021",
-    phoneFormatted: "+34 850 123 5021",
+    email: "contact@gulanity.com",
+    phone: "660566561",
+    phoneFormatted: "+34 660566561",
   },
   social: {
     facebook: "https://facebook.com/gulanity",
     instagram: "https://instagram.com/gulanity",
     twitter: "https://twitter.com/gulanity",
     linkedin: "https://linkedin.com/company/gulanity",
+    tiktok: "https://tiktok.com/@gulanity",
   },
   platforms: {
     restaurantLogin: "https://platform.dev.gulanity.com/login",

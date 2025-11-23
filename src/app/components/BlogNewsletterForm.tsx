@@ -17,7 +17,7 @@ export default function BlogNewsletterForm() {
   };
 
   return (
-    <form className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto" onSubmit={handleSubmit}>
+    <form className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row fhd:flex-row qhd:flex-row gap-4 max-w-xl mx-auto" onSubmit={handleSubmit}>
       <div className="flex-1">
         <label htmlFor="blog-newsletter-email" className="sr-only">
           Email para newsletter del blog

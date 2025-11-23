@@ -1,12 +1,21 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { readFileSync, readdirSync, statSync } from "fs";
+import { join } from "path";
+import yaml from "js-yaml";
 import Header from "../components/Header";
+import { getLoginUrl } from "@/lib/login-config";
 import Footer from "../components/Footer";
 import ScrollDepthTracker from "../components/ScrollDepthTracker";
 import RestaurantsHeroActions from "./RestaurantsHeroActions";
 import HeroRestaurantsShowcase from "../components/HeroRestaurantsShowcase";
-import RestaurantsClient from "./RestaurantsClient";
+import ImageGallery from "./ImageGallery";
+import DishesMetric from "./DishesMetric";
+import RestaurantMetric from "./RestaurantMetric";
+import CuisineMetric from "./CuisineMetric";
+import AmenityMetric from "./AmenityMetric";
+import AllergenMetric from "./AllergenMetric";
 import { CheckCircle2, TrendingUp, Users, BarChart3, Zap } from "lucide-react";
+import "./page.css";
 
 export const metadata: Metadata = {
   title: "Restaurantes - Gulanity | Crece sin comisiones",
@@ -23,7 +32,53 @@ export const metadata: Metadata = {
   },
 };
 
+function getCloudConfig() {
+  try {
+    const filePath = join(process.cwd(), "data", "cloud-config.yaml");
+    const fileContents = readFileSync(filePath, "utf8");
+    const data = yaml.load(fileContents) as {
+      cloudHost: string;
+    };
+    return data;
+  } catch (error) {
+    console.error("Error reading cloud-config.yaml:", error);
+    return {
+      cloudHost: "https://cloud.dev.neocody.net",
+    };
+  }
+}
+
+function getGalleryImages() {
+  try {
+    const galleryPath = join(process.cwd(), "public", "gallery", "restaurants");
+    const files = readdirSync(galleryPath);
+    const imageExtensions = [".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg", ".JPG", ".JPEG", ".PNG", ".WEBP", ".GIF", ".SVG"];
+    const images = files
+      .filter((file) => {
+        const filePath = join(galleryPath, file);
+        const stats = statSync(filePath);
+        if (!stats.isFile()) return false;
+        return imageExtensions.some((ext) => file.endsWith(ext));
+      })
+      .map((file) => {
+        const fileName = file.replace(/\.[^/.]+$/, "");
+        return {
+          src: `/gallery/restaurants/${file}`,
+          alt: fileName.replace(/[-_]/g, " "),
+          width: 300,
+          height: 300,
+        };
+      });
+    return images;
+  } catch (error) {
+    console.error("Error reading gallery folder:", error);
+    return [];
+  }
+}
+
 export default function RestaurantsPage() {
+  const cloudConfig = getCloudConfig();
+  const galleryImages = getGalleryImages();
   const gainCards = [
     { icon: <TrendingUp className="w-6 h-6" />, title: "Más mesas ocupadas", desc: "Visibilidad por recomendaciones reales de foodies." },
     { icon: <Users className="w-6 h-6" />, title: "Clientes que repiten", desc: "Expectativa alineada con experiencia." },
@@ -37,47 +92,52 @@ export default function RestaurantsPage() {
     { num: "3", title: "Conecta y mide", desc: "Atiende campañas y consulta indicadores clave." },
   ];
   return (
-    <div className="min-h-screen bg-white text-[#052838]">
-      <Header />
+    <div className="restaurants-page">
+      <Header loginUrl={getLoginUrl()} />
       <main>
         <ScrollDepthTracker page="restaurants" />
-        <section id="hero" className="hero-full flex items-center bg-gradient-to-b from-[#052838] to-[#001f32] text-white">
-          <div className="container-outer w-full py-10 md:py-12">
-            <div className="grid md:grid-cols-[1fr_1.2fr] gap-10 items-center">
-              <div className="justify-self-start max-w-xl">
-                <div className="flex flex-col items-start text-left">
-                  <div className="mb-6">
-                    <div className="inline-flex rounded-full p-1 bg-white/5 border border-white/10">
-                      <Link href="/restaurants" className="px-5 py-2 bg-[#D4BFA6] text-[#052838] rounded-full text-xs font-semibold transition-all">
-                        Soy Restaurante
-                      </Link>
-                      <Link href="/users" className="px-5 py-2 text-white/85 hover:text-white rounded-full text-xs font-semibold transition-all">
-                        Soy Usuario
-                      </Link>
-                    </div>
-                  </div>
-                  <h1 className="text-white font-display mb-4">Más clientes. Cero comisiones. Total control.</h1>
-                  <p className="text-white/70 leading-relaxed mb-8">
-                    Gulanity conecta restaurantes y foodies para que lo que esperan sea exactamente lo que encuentran.
-                  </p>
-                  <RestaurantsHeroActions />
-                </div>
+        <section id="hero" className="restaurants-hero">
+          <div className="container-outer restaurants-hero-content">
+            <div className="restaurants-hero-grid">
+              <div className="restaurants-hero-text">
+                <h1 className="restaurants-hero-title font-display">Más clientes. Cero comisiones. Total control.</h1>
+                <p className="restaurants-hero-description">
+                  Gulanity conecta restaurantes y foodies para que lo que esperan sea exactamente lo que encuentran.
+                </p>
+                <RestaurantsHeroActions />
               </div>
               <div className="relative w-full justify-self-end" key="hero-restaurants-showcase">
                 <HeroRestaurantsShowcase />
               </div>
             </div>
+            <div className="mt-4 sm:mt-6 md:mt-6 lg:mt-8 xl:mt-8 fhd:-mt-12 qhd:mt-8">
+              <div className="restaurants-metrics-cards">
+                <DishesMetric config={cloudConfig} />
+                <RestaurantMetric config={cloudConfig} />
+                <CuisineMetric config={cloudConfig} />
+                <AmenityMetric config={cloudConfig} />
+                <AllergenMetric config={cloudConfig} />
+              </div>
+            </div>
           </div>
         </section>
 
-        <section id="que-ganas" className="section-gap bg-white">
+        <section id="galeria" className="restaurants-section restaurants-bg-gray">
           <div className="container-outer">
-            <h2 className="text-[#052838] text-center mb-10 md:mb-12">Qué ganas</h2>
-            <div className="grid gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            <ImageGallery
+              images={galleryImages}
+            />
+          </div>
+        </section>
+
+        <section id="que-ganas" className="restaurants-section restaurants-bg-gray">
+          <div className="container-outer">
+            <h2 className="restaurants-section-title">Qué ganas</h2>
+            <div className="restaurants-gain-cards">
               {gainCards.map((item) => (
-                <article key={item.title} className="card-compact hover:shadow-lg transition-all">
-                  <div className="mb-3 text-[#D4BFA6]">{item.icon}</div>
-                  <h3 className="text-[#052838] mb-2">{item.title}</h3>
+                <article key={item.title} className="restaurants-gain-card">
+                  <div className="restaurants-gain-icon">{item.icon}</div>
+                  <h3 className="restaurants-gain-title">{item.title}</h3>
                   <p>{item.desc}</p>
                 </article>
               ))}
@@ -85,37 +145,37 @@ export default function RestaurantsPage() {
           </div>
         </section>
 
-        <section id="beneficios" className="section-gap bg-gray-50">
+        <section id="beneficios" className="restaurants-section restaurants-bg-gray">
           <div className="container-outer">
-            <h2 className="text-[#052838] text-center mb-2">Beneficios que se notan</h2>
-            <p className="text-sm text-gray-500 text-center mb-10 md:mb-12">Datos orientativos basados en pruebas internas.</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <h2 className="restaurants-section-title">Beneficios que se notan</h2>
+            <p className="restaurants-section-subtitle">Datos orientativos basados en pruebas internas.</p>
+            <div className="restaurants-metrics-grid">
               {[
                 { value: "+18%", label: "Ticket medio" },
                 { value: "−27%", label: "Cancelaciones" },
                 { value: "+22%", label: "Reservas cualificadas" },
               ].map((metric) => (
-                <div key={metric.label} className="text-center">
-                  <div className="text-5xl md:text-6xl font-display font-bold text-[#D4BFA6] mb-3 metric">{metric.value}</div>
-                  <p className="text-base text-[#052838]">{metric.label}</p>
+                <div key={metric.label} className="restaurants-metric">
+                  <div className="restaurants-metric-value font-display">{metric.value}</div>
+                  <p className="restaurants-metric-label">{metric.label}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="impacto" className="section-gap bg-gray-50">
-          <div className="container-outer max-w-4xl">
-            <h2 className="text-[#052838] text-center mb-10 md:mb-12">El impacto en tu bolsillo</h2>
-            <div className="bg-gradient-to-br from-[#D4BFA6]/10 to-transparent border border-[#D4BFA6]/20 rounded-3xl p-6 md:p-10">
-              <p className="text-xl md:text-2xl font-display text-center text-[#052838] leading-relaxed">
+        <section id="impacto" className="restaurants-section restaurants-bg-gray">
+          <div className="container-outer">
+            <h2 className="restaurants-section-title">El impacto en tu bolsillo</h2>
+            <div className="restaurants-impact-card">
+              <p className="restaurants-impact-text font-display">
                 Más visibilidad cualificada → más ocupación → más ingresos
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+              <div className="restaurants-impact-list">
                 {checklist.map((item) => (
-                  <div key={item} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-[#D4BFA6] flex-shrink-0 mt-0.5" />
-                    <p className="text-sm text-gray-600">{item}</p>
+                  <div key={item} className="restaurants-impact-item">
+                    <CheckCircle2 className="restaurants-impact-icon" />
+                    <p className="restaurants-impact-item-text">{item}</p>
                   </div>
                 ))}
               </div>
@@ -123,24 +183,22 @@ export default function RestaurantsPage() {
           </div>
         </section>
 
-        <section id="como-funciona" className="section-gap bg-white">
+        <section id="como-funciona" className="restaurants-section restaurants-bg-gray">
           <div className="container-outer">
-            <h2 className="text-[#052838] text-center mb-10 md:mb-12">Cómo funciona</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <h2 className="restaurants-section-title">Cómo funciona</h2>
+            <div className="restaurants-steps-grid">
               {steps.map((step) => (
-                <article key={step.num} className="border border-gray-100 rounded-2xl p-6 shadow-sm">
-                  <div className="bg-[#D4BFA6] text-[#052838] w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-lg mb-4">
+                <article key={step.num} className="restaurants-step-card">
+                  <div className="restaurants-step-number font-display">
                     {step.num}
                   </div>
-                  <h3 className="text-[#052838] mb-2">{step.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p>
+                  <h3 className="restaurants-step-title">{step.title}</h3>
+                  <p className="restaurants-step-description">{step.desc}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
-
-        <RestaurantsClient />
       </main>
       <Footer />
     </div>
