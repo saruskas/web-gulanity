@@ -231,7 +231,7 @@ export default function Header({ loginUrl }: HeaderProps = {}) {
             {/* Link directo al blog */}
             <Link
               href="/blog"
-              className={`hidden sm:inline-flex md:inline-flex lg:inline-flex xl:inline-flex fhd:inline-flex qhd:inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all ${isUsers ? "border border-[#052838]/15 text-[#052838]/85 hover:bg-[#052838]/10 hover:text-[#052838]" : "border border-white/15 text-white/85 hover:bg-white/10 hover:text-white"}`}
+              className={`hidden sm:inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all ${isUsers ? "border border-[#052838]/15 text-[#052838]/85 hover:bg-[#052838]/10 hover:text-[#052838]" : "border border-white/15 text-white/85 hover:bg-white/10 hover:text-white"}`}
             >
               <BookOpen className="w-4 h-4" />
               Blog
@@ -243,7 +243,7 @@ export default function Header({ loginUrl }: HeaderProps = {}) {
                 href={loginUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:inline-flex md:inline-flex lg:inline-flex xl:inline-flex fhd:inline-flex qhd:inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all border border-white/15 text-white/85 hover:bg-white/10 hover:text-white"
+                className="hidden sm:inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all border border-white/15 text-white/85 hover:bg-white/10 hover:text-white"
               >
                 <LogIn className="w-4 h-4" />
                 Login

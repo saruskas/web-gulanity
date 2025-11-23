@@ -121,11 +121,11 @@ export default function UsersPage() {
                   <UsersDownloadCard iosUrl={appUrls.ios} androidUrl={appUrls.android} />
                 </div>
               </div>
-              <div className="relative w-full max-w-md sm:max-w-none md:max-w-none lg:max-w-none xl:max-w-none fhd:max-w-none qhd:max-w-none mx-auto" key="hero-user-showcase">
+              <div className="relative w-full max-w-md sm:max-w-none mx-auto" key="hero-user-showcase">
                 <HeroUserShowcase />
               </div>
             </div>
-            <div className="mt-4 sm:mt-6 md:mt-6 lg:mt-8 xl:mt-8 fhd:mt-8 qhd:mt-8">
+            <div className="mt-4 sm:mt-6 lg:mt-8">
               <div className="users-gain-cards">
                 <DishesMetric config={cloudConfig} />
                 <RestaurantMetric config={cloudConfig} />

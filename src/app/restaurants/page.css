@@ -34,11 +34,11 @@
 }
 
 .restaurants-hero-content {
-  @apply w-full py-10 sm:py-12 md:py-12 lg:py-10 xl:py-12 fhd:py-12 qhd:py-12;
+  @apply w-full py-10 sm:py-12 lg:py-10 xl:py-12;
 }
 
 .restaurants-hero-grid {
-  @apply grid grid-cols-1 sm:grid-cols-[1fr_1.2fr] md:grid-cols-[1fr_1.2fr] lg:grid-cols-[1fr_1fr] xl:grid-cols-[1fr_1.2fr] fhd:grid-cols-[1fr_1.2fr] qhd:grid-cols-[1fr_1.2fr] gap-10 lg:gap-8 xl:gap-10 items-center;
+  @apply grid grid-cols-1 sm:grid-cols-[1fr_1.2fr] lg:grid-cols-[1fr_1fr] xl:grid-cols-[1fr_1.2fr] gap-10 lg:gap-8 xl:gap-10 items-center;
 }
 
 .restaurants-hero-text {
@@ -90,7 +90,7 @@
 
 /* Secciones */
 .restaurants-section {
-  @apply py-6 sm:py-8 md:py-8 lg:py-10 xl:py-10 fhd:py-10 qhd:py-10;
+  @apply py-6 sm:py-8 lg:py-10;
 }
 
 .restaurants-section-title {
@@ -99,16 +99,16 @@
 }
 
 .restaurants-section-subtitle {
-  @apply text-sm text-gray-500 text-center mb-4 sm:mb-6 md:mb-6 lg:mb-6 xl:mb-6 fhd:mb-6 qhd:mb-6;
+  @apply text-sm text-gray-500 text-center mb-4 sm:mb-6;
 }
 
 /* Cards de beneficios */
 .restaurants-gain-cards {
-  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 fhd:grid-cols-4 qhd:grid-cols-4 gap-5 sm:gap-6 md:gap-6 lg:gap-6 xl:gap-6 fhd:gap-6 qhd:gap-6 mt-8 sm:mt-10 md:mt-10 lg:mt-12 xl:mt-12 fhd:mt-12 qhd:mt-12;
+  @apply grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6 mt-8 sm:mt-10 lg:mt-12;
 }
 
 .restaurants-gain-card {
-  @apply bg-white border border-gray-200 rounded-2xl p-6 sm:p-7 md:p-7 lg:p-7 xl:p-7 fhd:p-7 qhd:p-7 transition-all;
+  @apply bg-white border border-gray-200 rounded-2xl p-6 sm:p-7 transition-all;
 }
 
 .restaurants-gain-card:hover {
@@ -127,15 +127,15 @@
 
 /* Cards de métricas */
 .restaurants-metrics-cards {
-  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 fhd:grid-cols-5 qhd:grid-cols-5 gap-2.5 sm:gap-2.5 md:gap-2.5 lg:gap-2.5 xl:gap-2.5 fhd:gap-2.5 qhd:gap-2.5;
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5;
   justify-content: center;
   width: fit-content;
   margin: 0 auto;
-  @apply mt-4 sm:mt-6 md:mt-6 lg:mt-8 xl:mt-8 fhd:mt-4 qhd:mt-8;
+  @apply mt-4 sm:mt-6 lg:mt-8;
 }
 
 .restaurants-metric-card {
-  @apply bg-white border border-gray-200 rounded-xl px-1.5 py-2 sm:px-1.5 sm:py-2 md:px-1.5 md:py-2 lg:px-1.5 lg:py-2 xl:px-1.5 xl:py-2 fhd:px-1.5 fhd:py-2 qhd:px-1.5 qhd:py-2 text-center;
+  @apply bg-white border border-gray-200 rounded-xl px-1.5 py-2 text-center;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   width: 140px;
 }
@@ -157,12 +157,12 @@
 }
 
 .restaurants-metric-card-value {
-  @apply text-2xl sm:text-3xl md:text-3xl lg:text-3xl xl:text-3xl fhd:text-3xl qhd:text-3xl leading-none font-bold text-[#D4BFA6] mb-1.5 tabular-nums;
+  @apply text-2xl sm:text-3xl leading-none font-bold text-[#D4BFA6] mb-1.5 tabular-nums;
 }
 
 /* Métricas */
 .restaurants-metrics-grid {
-  @apply grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 fhd:grid-cols-3 qhd:grid-cols-3 gap-4 sm:gap-6 md:gap-6 lg:gap-6 xl:gap-6 fhd:gap-6 qhd:gap-6;
+  @apply grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6;
 }
 
 .restaurants-metric {
@@ -170,7 +170,7 @@
 }
 
 .restaurants-metric-value {
-  @apply text-3xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-4xl fhd:text-4xl qhd:text-4xl leading-none font-bold text-[#D4BFA6] mb-2 tabular-nums;
+  @apply text-3xl sm:text-4xl leading-none font-bold text-[#D4BFA6] mb-2 tabular-nums;
 }
 
 .restaurants-metric-label {
@@ -180,15 +180,15 @@
 
 /* Impacto card */
 .restaurants-impact-card {
-  @apply bg-gradient-to-br from-[#D4BFA6]/10 to-transparent border border-[#D4BFA6]/20 rounded-3xl p-6 sm:p-10 md:p-10 lg:p-10 xl:p-10 fhd:p-10 qhd:p-10 max-w-4xl mx-auto;
+  @apply bg-gradient-to-br from-[#D4BFA6]/10 to-transparent border border-[#D4BFA6]/20 rounded-3xl p-6 sm:p-10 max-w-4xl mx-auto;
 }
 
 .restaurants-impact-text {
-  @apply text-xl sm:text-2xl md:text-2xl lg:text-2xl xl:text-2xl fhd:text-2xl qhd:text-2xl leading-relaxed text-[#052838] text-center;
+  @apply text-xl sm:text-2xl leading-relaxed text-[#052838] text-center;
 }
 
 .restaurants-impact-list {
-  @apply grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 fhd:grid-cols-3 qhd:grid-cols-3 gap-4 mt-8;
+  @apply grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8;
 }
 
 .restaurants-impact-item {
@@ -212,7 +212,7 @@
 
 /* Steps */
 .restaurants-steps-grid {
-  @apply grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 fhd:grid-cols-3 qhd:grid-cols-3 gap-6 sm:gap-8 md:gap-8 lg:gap-8 xl:gap-8 fhd:gap-8 qhd:gap-8;
+  @apply grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8;
 }
 
 .restaurants-step-card {

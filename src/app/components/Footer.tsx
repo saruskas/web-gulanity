@@ -23,7 +23,7 @@ export default function Footer() {
   return (
     <footer className={`${footerBgClass} backdrop-saturate-[140%] backdrop-blur-[6px]`}>
       <div className="container-outer pt-6 qhd:pt-5 pb-4">
-        <div className="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 fhd:grid-cols-4 qhd:grid-cols-4 gap-6 lg:gap-4 xl:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 lg:gap-4 xl:gap-6">
           <div>
             <Image
               src={isUsers ? "/logo_user.png" : "/logo_rest.png"}
@@ -140,7 +140,7 @@ export default function Footer() {
             </nav>
           </div>
         </div>
-        <div className={`border-t mt-6 pt-4 text-xs flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row fhd:flex-row qhd:flex-row items-center justify-between gap-3 ${isUsers ? "border-[#052838]/10 text-[#052838]/60" : "border-white/10 text-white/60"}`}>
+        <div className={`border-t mt-6 pt-4 text-xs flex flex-col sm:flex-row items-center justify-between gap-3 ${isUsers ? "border-[#052838]/10 text-[#052838]/60" : "border-white/10 text-white/60"}`}>
           <span>© 2025 Gulanity. Todos los derechos reservados.</span>
           <nav aria-label="Términos legales">
             <ul className="flex items-center gap-4">
